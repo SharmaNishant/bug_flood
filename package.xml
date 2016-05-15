@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <name>bug_flood</name>
+  <version>0.0.0</version>
+  <description>The bug_flood package</description>
+
+  <maintainer email="nsharma@cse.unl.edu">Nishant Sharma</maintainer>
+  <maintainer email="shivam13095@iiitd.ac.in">Shivam Thukral</maintainer>
+
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>TODO</license>
+
+  <url type="website">https://nishants1994.wordpress.com/bug-flood-bug-based-offline-path-planner/</url>
+
+  <!-- The *_depend tags are used to specify dependencies -->
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>visualization_msgs</run_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+  </export>
+</package>
