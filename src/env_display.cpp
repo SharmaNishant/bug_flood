@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <visualization_msgs/Marker.h>
-#include <bug_flood/obstacle_io.h>
+#include <bug_flood/envirnment.h>
 
 //#define DEBUG
 
