@@ -42,11 +42,11 @@ include_directories(include
 
 ## Declare a cpp library
 add_library(bug_flood_lib
-		src/obstacle_io.cpp
+		src/envirnment.cpp
 		src/helper_functions.cpp
 		src/map.cpp
 		src/line.cpp
-		src/obstacle_io.cpp
+		src/envirnment.cpp
 )
 
 ## Declare a cpp executable
