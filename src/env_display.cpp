@@ -1,8 +1,10 @@
 #include <ros/ros.h>
 #include <visualization_msgs/Marker.h>
 #include <bug_flood/envirnment.h>
+#include <bug_flood/helper_functions.h>
 
-//#define DEBUG
+//#define DEBUG std::cout << __FUNCTION__ << " " << __LINE__ << std::endl;
+#define DEBUG ;
 
 typedef visualization_msgs::Marker Marker;
 
@@ -29,21 +31,23 @@ void initializeMarkers(Marker &boundary,
 
 	//defining types
 	boundary.type  = Marker::LINE_STRIP;
-	obstacle.type = Marker::LINE_LIST;
+	obstacle.type = Marker::CUBE_LIST;
 	startPoint.type = Marker::SPHERE;
 	endPoint.type = Marker::SPHERE;
 
 	//setting scale
 	boundary.scale.x = 1;
+
 	obstacle.scale.x = 1;
+	obstacle.scale.y = 1;
 
-	startPoint.scale.x = 2;
-	startPoint.scale.y = 2;
-	startPoint.scale.z = 2;
+	startPoint.scale.x = 3;
+	startPoint.scale.y = 3;
+	startPoint.scale.z = 3;
 
-	endPoint.scale.x = 2;
-	endPoint.scale.y = 2;
-	endPoint.scale.z = 2;
+	endPoint.scale.x = 3;
+	endPoint.scale.y = 3;
+	endPoint.scale.z = 3;
 
 	//assigning colors
 	boundary.color.r = obstacle.color.r = 0.0f;
@@ -95,31 +99,79 @@ vector< Point > initializeBoundary(int rowSize, int colSize)
 	point.z = 0;
 	bondArray.push_back(point);
 
-#ifdef DEBUG
-	cout << "Exiting initializeBoundary function." << endl;
-#endif
-
 	return bondArray;
 }
 
-vector< Point > initializeObstacle(ObstacleIO &obstacleIO)
+vector< Point > initializeObstacle(vector <Point> obstacles)
 {
 	vector<Point> obstacleLines;
-	ObstacleList obsList = obstacleIO.getObstacleList();
-	for (Obstacle obs : obsList)
+	for (Point point : obstacles)
 	{
-		for(Line line : obs)
-		{
-			obstacleLines.push_back(line.start);
-			obstacleLines.push_back(line.end);
-		}
+		point.x += 0.5;
+		point.y += 0.5;
+		obstacleLines.push_back(point);
 	}
 
 	return obstacleLines;
 }
 
+void initializeMarker(Marker &path)
+{
+	//init headers
+	path.header.frame_id 	= "path_planner";
+	path.header.stamp 		= ros::Time::now();
+	path.ns                 = "path_planner_path";
+	path.action             = Marker::ADD;
+	path.pose.orientation.w = 1.0;
+
+	//setting id for each marker
+	path.id   = 112;
+
+	//defining types
+	path.type  = Marker::LINE_STRIP;
+
+	//setting scale
+	path.scale.x = 1;
+
+	//assigning colors
+	path.color.g = 1.0f;
+	path.color.a = 1.0f;
+}
+
+void populateMarker(Marker &path, string file)
+{
+	ifstream infile(file);
+	if(!infile.is_open())
+	{
+		cout<<"Cannot Open Map File. Exiting...";
+		exit(-1);
+	}
+
+	std::string line;
+	vector<string> splittedLine;
+
+	while (std::getline(infile, line))
+	{
+		splittedLine = split(line, ' ');
+		Point point;
+		point.x = stod(splittedLine[0]);
+		point.y = stod(splittedLine[1]);
+		point.z = 0;
+		path.points.push_back(point);
+	}
+	infile.close();
+}
+
+
 int main(int argc,char** argv)
 {
+	if(argc < 3)
+	{
+		cout << "USAGE: rosrun bug_flood env_display <source_goal> <map> <path(optional)>" << endl;
+	}
+
+
+
 	//initializing ROS
 	ros::init(argc,argv,"env_display");
 	ros::NodeHandle n;
@@ -127,9 +179,7 @@ int main(int argc,char** argv)
 	//defining Publisher
 	ros::Publisher env_publisher = n.advertise<Marker>("path_planner_env",1);
 
-#ifdef DEBUG
-	cout << "ROS Initialization done." << endl;
-#endif
+	DEBUG
 
 	//defining markers
 	Marker boundary;
@@ -139,34 +189,35 @@ int main(int argc,char** argv)
 
 	initializeMarkers(boundary, obstacle, startPoint, endPoint);
 
-#ifdef DEBUG
-	cout << "Marker Initialization done." << endl;
-#endif
+	DEBUG
 
-	ObstacleIO obstacleIO(argv[1],argv[2], argv[3]);
+	Environment environment(argv[1], argv[2]);
 
-#ifdef DEBUG
-	cout << "Obstacles Read." << endl;
-#endif
+	DEBUG
 
-	boundary.points = initializeBoundary(obstacleIO.getRowSize(), obstacleIO.getColSize());
+	int length = environment.getEnvironmentLength();
+	int width = environment.getEnvironmentWidth();
+	boundary.points = initializeBoundary(length, width);
 
-#ifdef DEBUG
-	cout << "Boundaries Initialized Read." << endl;
-#endif
+	DEBUG
 
-	obstacle.points = initializeObstacle(obstacleIO);
+	obstacle.points = initializeObstacle(environment.getObstructedLocations(length,width));
 
-	#ifdef DEBUG
-	cout << "Object Lines Initialized Read." << endl;
-#endif
+	DEBUG
 
-	startPoint.pose.position = obstacleIO.getSource();
-	endPoint.pose.position = obstacleIO.getGoal();
+	startPoint.pose.position = environment.getSource();
+	endPoint.pose.position = environment.getGoal();
 
-#ifdef DEBUG
-	cout << "Source Goal Initialized Read." << endl;
-#endif
+	DEBUG
+
+	Marker path;
+	//if we also have to publish the path
+	if(argc >= 4)
+	{
+		initializeMarker(path);
+		populateMarker(path,argv[3]);
+	}
+
 
 	while(ros::ok())
 	{
@@ -177,6 +228,11 @@ int main(int argc,char** argv)
 		env_publisher.publish(startPoint);
 		ros::Duration(0.2).sleep();
 		env_publisher.publish(endPoint);
+		if(argc >= 4)
+		{
+			ros::Duration(0.2).sleep();
+			env_publisher.publish(path);
+		}
 
 		ros::Duration(1).sleep();
 

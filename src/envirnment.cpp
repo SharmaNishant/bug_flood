@@ -11,154 +11,55 @@
 #endif
  */
 
-ObstacleIO::ObstacleIO(string sourceGoal, string obstacle)
+Environment::Environment(string sourceGoal, int length, int width): map(length,width)
 {
 	ReadSourceGoal(sourceGoal);
-	ReadObstacleList(obstacle);
 }
 
-ObstacleIO::ObstacleIO(string sourceGoal, string obstacle, string map)
+Environment::Environment(string sourceGoal, string mapFile): map(mapFile)
 {
 	ReadSourceGoal(sourceGoal);
-	ReadObstacleList(obstacle);
-	ReadBinaryMap(map);
-}
-
-//BinaryMap ObstacleIO::getBinaryMap()
-//{
-//	return this->binaryMap;
-//}
-
-bool ObstacleIO::isObstructed(Point location)
-{
-	return this->binaryMap.isObstructed(location);
 }
 
 
-ObstacleList ObstacleIO::getObstacleList()
-{
-	return this->obstacleList;
-}
-
-Line ObstacleIO::getObstacleLine(int obstacleIndex, int lineIndex)
-{
-	return this->obstacleList.at(obstacleIndex).at(lineIndex);
-}
-
-bool ObstacleIO::getNextLine(int obstacleIndex, int lineIndex, Point location, Line &nextLine)
-{
-	Line currentLine = this->getObstacleLine(obstacleIndex, lineIndex);
-	//if bug is at the end of the line return next one from the list
-	if(currentLine.isAtEnd(location))
-	{
-		int nextLineIndex = (lineIndex++) % this->obstacleList.at(obstacleIndex).size();
-		nextLine = this->getObstacleLine(obstacleIndex, nextLineIndex);
-		return true;
-	}
-	//if bug is the start of the line return previous one in the list
-	if(currentLine.isAtStart(location))
-	{
-		int nextLineIndex = (lineIndex--) % this->obstacleList.at(obstacleIndex).size();
-		nextLine = this->getObstacleLine(obstacleIndex, nextLineIndex);
-		return true;
-	}
-	return false;
-}
-
-Point ObstacleIO::getSource()
+Point Environment::getSource()
 {
 	return this->source;
 }
 
-Point ObstacleIO::getGoal()
+Point Environment::getGoal()
 {
 	return this->goal;
 }
 
-int ObstacleIO::getRowSize()
+int Environment::getEnvironmentLength()
 {
-	return this->binaryMap.rowSize;
+	return this->map.getRowSize();
 }
 
-int ObstacleIO::getColSize()
+int Environment::getEnvironmentWidth()
 {
-	return this->binaryMap.colSize;
+	return this->map.getColSize();
 }
 
-void ObstacleIO::ReadBinaryMap(string map)
+void Environment::getEnvironmentDimensions(int &length, int &width)
 {
-	ifstream infile(map);
-	if(!infile.is_open())
-	{
-		cout<<"Cannot Open Map File. Exiting.....";
-		exit(-1);
-	}
-
-	std::string line;
-	vector<string> splittedLine;
-	vector< vector <bool> > _map;
-
-	while (std::getline(infile, line))
-	{
-		vector<bool> _map_row;
-		splittedLine = split(line, ' ');
-		for (string str : splittedLine)
-		{
-			int bit = stoi(str);
-			if (bit == 0) _map_row.push_back(false);
-			else if (bit == 1) _map_row.push_back(true);
-			else assert( (bit == 1 || bit == 0 ) && "Map values are out of range");
-		}
-		_map.push_back(_map_row);
-	}
-
-	int rowSize = _map.size();
-	int colSize = _map.at(rowSize-1).size();
-
-	this->binaryMap.BinaryMapInit(rowSize,colSize);
-	for(int i=0;i<rowSize;i++)
-	{
-		for(int j=0;j<colSize;j++)
-		{
-			this->binaryMap.binary_map[i][j] = _map.at(i).at(j);
-		}
-	}
+	length = getEnvironmentLength();
+	width = getEnvironmentWidth();
 }
 
-void ObstacleIO::ReadObstacleList(string obstacle)
+vector<Point> Environment::getObstructedLocations(int &rowSize, int &colSize)
 {
-	ifstream infile(obstacle);
-	if(!infile.is_open())
-	{
-		cout<<"Cannot Open Obstacle file File. Exiting.....";
-		exit(-1);
-	}
-
-	std::string line;
-	vector<string> splittedLine;
-
-	Obstacle obstacleObj;
-	while (std::getline(infile, line))
-	{
-		if(!line.compare("-----------"))
-		{
-			this->obstacleList.push_back(obstacleObj);
-			obstacleObj.clear();
-			continue;
-		}
-		splittedLine = split(line, ',');
-		Line lineObj;
-		lineObj.start.x = stoi(splittedLine[0]);
-		lineObj.start.y = stoi(splittedLine[1]);
-		lineObj.start.z = 0;
-		lineObj.end.x = stoi(splittedLine[2]);
-		lineObj.end.y = stoi(splittedLine[3]);
-		lineObj.end.z = 0;
-		obstacleObj.push_back(lineObj);
-	}
+	return this->map.getObstructedLocations(rowSize,colSize);
 }
 
-void ObstacleIO::ReadSourceGoal(string sourceGoal)
+bool Environment::isObstructed(Point location)
+{
+	return true;
+}
+
+
+void Environment::ReadSourceGoal(string sourceGoal)
 {
 	ifstream infile(sourceGoal);
 	if(!infile.is_open())
@@ -183,4 +84,5 @@ void ObstacleIO::ReadSourceGoal(string sourceGoal)
 	this->goal.x = stoi(splittedLine[0]);
 	this->goal.y = stoi(splittedLine[1]);
 	this->goal.z = 0;
+	infile.close();
 }
