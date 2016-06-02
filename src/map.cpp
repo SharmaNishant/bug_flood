@@ -5,7 +5,7 @@
 #include <bug_flood/map.h>
 #include <fstream>
 #include <bug_flood/helper_functions.h>
-
+#include <cmath>
 
 Map::Map(int rowSize, int colSize)
 {
@@ -69,6 +69,7 @@ void Map::readMap(string filename)
 		}
 		++rowCounter;
 	}
+	infile.close();
 }
 
 void Map::MapInit(int rowSize, int colSize)
@@ -107,20 +108,111 @@ void Map::setMap(vector<vector<bool> > &_map)
 	}
 }
 
-vector<Point> Map::getObstructedLocations(int &rowSize, int colSize);
+vector<Point> Map::getObstructedLocations(int &rowSize, int &colSize)
+{
+	vector <Point> obstructed;
+	for (int i = 0; i < rowSize; ++i)
+	{
+		for (int j = 0; j < colSize; ++j)
+		{
+			if(map[(i * rowSize)+j])
+			{
+				Point point;
+				point.x = i;
+				point.y = j;
+				point.z = 0;
+				obstructed.push_back(point);
+			}
+		}
+	}
 
+	rowSize = this->rowSize;
+	colSize = this->colSize;
 
+	return obstructed;
+}
 
+bool Map::operator()(int row, int col)
+{
+	//outside of environment is always obstacle
+	if ((0 > row || row > this->rowSize) && (0 > col || col > this->colSize))
+	{
+		return true;
+	}
 
-bool BinaryMap::isObstructed(Point location)
+	return map[(row * rowSize) + col];
+}
+
+//we should floor function here
+bool Map::operator()(Point location)
 {
 	int x = (int) floor(location.x);
 	int y = (int) floor(location.y);
-
+	//outside of environment is always obstacle
 	if ((0 > x || x > this->rowSize) && (0 > y || y > this->colSize))
 	{
 		return true;
 	}
 
-	return binary_map[x][y];
+	return map[ ((int)floor(location.x) * rowSize) + (int)floor(location.y)];
+}
+
+
+bool Map::at(int row, int col)
+{
+	//outside of environment is always obstacle
+	if ((0 > row || row > this->rowSize) && (0 > col || col > this->colSize))
+	{
+		return true;
+	}
+	return map[(row * rowSize) + col];
+}
+
+//we should floor function here
+bool Map::at(Point location)
+{
+	int x = (int) floor(location.x);
+	int y = (int) floor(location.y);
+	//outside of environment is always obstacle
+	if ((0 > x || x > this->rowSize) && (0 > y || y > this->colSize))
+	{
+		return true;
+	}
+
+	return map[ ((int)floor(location.x) * rowSize) + (int)floor(location.y)];
+}
+
+
+bool Map::isObstructed(int row, int col)
+{
+	//outside of environment is always obstacle
+	if ((0 > row || row > this->rowSize) && (0 > col || col > this->colSize))
+	{
+		return true;
+	}
+	return map[(row * rowSize) + col];
+}
+
+//we should floor function here
+bool Map::isObstructed(Point location)
+{
+	int x = (int) floor(location.x);
+	int y = (int) floor(location.y);
+	//outside of environment is always obstacle
+	if ((0 > x || x > this->rowSize) && (0 > y || y > this->colSize))
+	{
+		return true;
+	}
+
+	return map[ ((int)floor(location.x) * rowSize) + (int)floor(location.y)];
+}
+
+int Map::getColSize()
+{
+	return colSize;
+}
+
+int Map::getRowSize()
+{
+	return rowSize;
 }

@@ -22,14 +22,19 @@ using namespace std;
 class Environment
 {
 public:
-	Environment(string sourceGoal);
-	Environment(string sourceGoal, string map);
+	Environment(string sourceGoal, int length, int width);
+	Environment(string sourceGoal, string mapFile);
 	virtual ~Environment() {};
 
 	/* Accessor Functions */
+	//to be implemented by the client
 	virtual bool isObstructed(Point location);
 	Point getSource();
 	Point getGoal();
+	int getEnvironmentLength();
+	int getEnvironmentWidth();
+	void getEnvironmentDimensions(int &length, int &width);
+	vector<Point> getObstructedLocations(int &rowSize, int &colSize);
 
 private:
 	/* Member Variables */
@@ -38,7 +43,6 @@ private:
 	Point goal;
 
 	/* Modifiers */
-	void ReadBinaryMap(string map);
 	void ReadSourceGoal(string sourceGoal);
 };
 

@@ -45,7 +45,6 @@ add_library(bug_flood_lib
 		src/envirnment.cpp
 		src/helper_functions.cpp
 		src/map.cpp
-		src/line.cpp
 		src/envirnment.cpp
 )
 

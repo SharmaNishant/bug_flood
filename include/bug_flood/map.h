@@ -26,16 +26,17 @@ public:
 	/*
 	 * You can either create a blank map and then populate it later or read a map.
 	 */
+
 	Map(int rowSize, int colSize);
 	Map(string filename);
 	virtual ~Map();
 
 	/* public functions */
 	void setMap		(vector < vector <bool> > &map);
-	vector<Point> getObstructedLocations(int &rowSize, int colSize);
+	vector<Point> getObstructedLocations(int &rowSize, int &colSize);
 
 	bool operator() 	(int row, int col);
-	bool operator() 	(point location);
+	bool operator() 	(Point location); //we will take floor for double values
 
 	bool at				(Point location);
 	bool at				(int row, int col);
