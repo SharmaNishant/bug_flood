@@ -36,18 +36,18 @@ void initializeMarkers(Marker &boundary,
 	endPoint.type = Marker::SPHERE;
 
 	//setting scale
-	boundary.scale.x = 1;
+	boundary.scale.x = 0.2;
 
 	obstacle.scale.x = 1;
 	obstacle.scale.y = 1;
 
-	startPoint.scale.x = 3;
-	startPoint.scale.y = 3;
-	startPoint.scale.z = 3;
+	startPoint.scale.x = 1;
+	startPoint.scale.y = 1;
+	startPoint.scale.z = 1;
 
-	endPoint.scale.x = 3;
-	endPoint.scale.y = 3;
-	endPoint.scale.z = 3;
+	endPoint.scale.x = 1;
+	endPoint.scale.y = 1;
+	endPoint.scale.z = 1;
 
 	//assigning colors
 	boundary.color.r = obstacle.color.r = 0.0f;
@@ -131,7 +131,7 @@ void initializeMarker(Marker &path)
 	path.type  = Marker::LINE_STRIP;
 
 	//setting scale
-	path.scale.x = 1;
+	path.scale.x = 0.1;
 
 	//assigning colors
 	path.color.g = 1.0f;
