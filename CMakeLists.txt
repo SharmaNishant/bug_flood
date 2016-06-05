@@ -59,6 +59,7 @@ target_link_libraries(env_display bug_flood_lib ${catkin_LIBRARIES} )
 
 add_executable(bug_flood
 		src/bug_flood.cpp
+		src/bug.cpp
 )
 add_dependencies(bug_flood bug_flood_lib)
 target_link_libraries(bug_flood bug_flood_lib ${catkin_LIBRARIES} )
