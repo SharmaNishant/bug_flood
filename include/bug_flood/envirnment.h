@@ -28,13 +28,19 @@ public:
 
 	/* Accessor Functions */
 	//to be implemented by the client
-	virtual bool isObstructed(Point location);
+	virtual bool isObstructed(void* location);
 	Point getSource();
 	Point getGoal();
 	int getEnvironmentLength();
 	int getEnvironmentWidth();
 	void getEnvironmentDimensions(int &length, int &width);
 	vector<Point> getObstructedLocations(int &rowSize, int &colSize);
+
+	bool isVisited	(int row, int col);
+	bool isVisited	(Point location);
+
+	void setVisited	(int row, int col);
+	void setVisited	(Point location);
 
 private:
 	/* Member Variables */

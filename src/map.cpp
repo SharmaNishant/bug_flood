@@ -13,6 +13,7 @@ Map::Map(int rowSize, int colSize)
 	this->colSize 		= colSize;
 	this->isAllocated 	= false;
 	this->map 			= nullptr;
+	this->visited		= nullptr;
 }
 
 Map::Map(string filename)
@@ -39,7 +40,8 @@ void Map::readMap(string filename)
 	this->colSize = stoi(splittedLine[1]);
 
 	//allocate space
-	map = new bool [rowSize * colSize];
+	map 	= new bool [rowSize * colSize];
+	visited = new bool [rowSize * colSize];
 	this->isAllocated = true;
 
 	//to make sure we don't go beyond the specified ranges
@@ -65,6 +67,9 @@ void Map::readMap(string filename)
 			else if (bit == 1)	map[(rowCounter * rowSize) + colCounter] = true;
 			else assert( (bit == 1 || bit == 0 ) && "Map values are out of range");
 
+			/* Visited is init to map obstacles are considred to be visited by default */
+			visited[(rowCounter * rowSize) + colCounter] = map[(rowCounter * rowSize) + colCounter];
+
 			++colCounter;
 		}
 		++rowCounter;
@@ -77,7 +82,8 @@ void Map::MapInit(int rowSize, int colSize)
 	this->rowSize = rowSize;
 	this->colSize = colSize;
 
-	map = new bool [rowSize * colSize];
+	map 	= new bool [rowSize * colSize];
+	visited = new bool [rowSize * colSize];
 	this->isAllocated = true;
 }
 
@@ -87,6 +93,7 @@ Map::~Map()
 	if(this->isAllocated)
 	{
 		delete[] map;
+		delete[] visited;
 		this->isAllocated = false;
 	}
 }
@@ -104,6 +111,7 @@ void Map::setMap(vector<vector<bool> > &_map)
 		for (int col = 0; col < _map[row].size() ; col++)
 		{
 			map[(row * rowSize) + col]  =  _map[row][col];
+			visited[(row * rowSize) + col]  =  _map[row][col];
 		}
 	}
 }
@@ -182,7 +190,6 @@ bool Map::at(Point location)
 	return map[ ((int)floor(location.x) * rowSize) + (int)floor(location.y)];
 }
 
-
 bool Map::isObstructed(int row, int col)
 {
 	//outside of environment is always obstacle
@@ -207,6 +214,45 @@ bool Map::isObstructed(Point location)
 	return map[ ((int)floor(location.x) * rowSize) + (int)floor(location.y)];
 }
 
+bool Map::isVisited	(int row, int col)
+{
+	//outside of environment is always obstacle
+	if ((0 > row || row > this->rowSize) && (0 > col || col > this->colSize))
+	{
+		return true;
+	}
+	return visited[(row * rowSize) + col];
+}
+
+bool Map::isVisited	(Point location)
+{
+	int x = (int) floor(location.x);
+	int y = (int) floor(location.y);
+	//outside of environment is always obstacle
+	if ((0 > x || x > this->rowSize) && (0 > y || y > this->colSize))
+	{
+		return true;
+	}
+
+	return visited[ ((int)floor(location.x) * rowSize) + (int)floor(location.y)];
+}
+
+void Map::setVisited(int row, int col)
+{
+	//outside of environment is always obstacle
+	if (!((0 > row || row > this->rowSize) && (0 > col || col > this->colSize)))
+		visited[(row * rowSize) + col] = true;
+}
+
+void Map::setVisited(Point location)
+{
+	int x = (int) floor(location.x);
+	int y = (int) floor(location.y);
+	//outside of environment is always obstacle
+	if (!((0 > x || x > this->rowSize) && (0 > y || y > this->colSize)))
+		visited[(x * rowSize) + y] = true;
+}
+
 int Map::getColSize()
 {
 	return colSize;
@@ -215,4 +261,16 @@ int Map::getColSize()
 int Map::getRowSize()
 {
 	return rowSize;
+}
+
+int Map::getIndex(int row, int col)
+{
+	return (row * rowSize) + col;
+}
+
+int Map::getIndex(Point location)
+{
+	int x = (int) floor(location.x);
+	int y = (int) floor(location.y);
+	return (x * rowSize) + y;
 }

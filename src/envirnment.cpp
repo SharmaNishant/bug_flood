@@ -53,7 +53,7 @@ vector<Point> Environment::getObstructedLocations(int &rowSize, int &colSize)
 	return this->map.getObstructedLocations(rowSize,colSize);
 }
 
-bool Environment::isObstructed(Point location)
+bool Environment::isObstructed(void* location)
 {
 	return true;
 }
@@ -85,4 +85,26 @@ void Environment::ReadSourceGoal(string sourceGoal)
 	this->goal.y = stoi(splittedLine[1]);
 	this->goal.z = 0;
 	infile.close();
+}
+
+
+
+bool Environment::isVisited	(int row, int col)
+{
+	return this->map.isVisited(row,col);
+}
+
+bool Environment::isVisited	(Point location)
+{
+	return this->map.isVisited(location);
+}
+
+void Environment::setVisited	(int row, int col)
+{
+	this->map.setVisited(row,col);
+}
+
+void Environment::setVisited	(Point location)
+{
+	this->map.setVisited(location);
 }
