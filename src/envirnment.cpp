@@ -73,14 +73,14 @@ void Environment::ReadSourceGoal(string sourceGoal)
 
 	//read source
 	getline(infile, line);
-	splittedLine = split(line, ',');
+	splittedLine = split(line, ' ');
 	this->source.x = stoi(splittedLine[0]);
 	this->source.y = stoi(splittedLine[1]);
 	this->source.z = 0;
 
 	//read goal
 	getline(infile, line);
-	splittedLine = split(line, ',');
+	splittedLine = split(line, ' ');
 	this->goal.x = stoi(splittedLine[0]);
 	this->goal.y = stoi(splittedLine[1]);
 	this->goal.z = 0;
