@@ -88,24 +88,49 @@ void Environment::ReadSourceGoal(string sourceGoal)
 	infile.close();
 }
 
-bool Environment::isVisited	(int row, int col)
+bool Environment::isVisited	(double row, double col)
 {
-	return this->map.isVisited(row,col);
+//	return this->map.isVisited(row,col); //Not using map based visited information anymore
+	/*
+	 * New approach
+	 */
+	for (Point &point : this->visited)
+	{
+		if(point.x == row && point.y == col)
+			return true;
+	}
+	return false;
 }
 
 bool Environment::isVisited	(Point location)
 {
-	return this->map.isVisited(location);
+//	return this->map.isVisited(row,col); //Not using map based visited information anymore
+	/*
+	 * new approach
+	 */
+	for (Point &point : this->visited)
+	{
+		if(point.x == location.x && point.y == location.y)
+			return true;
+	}
+	return false;
+
 }
 
-void Environment::setVisited(int row, int col)
+void Environment::setVisited(double row, double col)
 {
-	this->map.setVisited(row,col);
+//	this->map.setVisited(row,col);
+	Point point;
+	point.x = row;
+	point.y = col;
+	point.z = 0;
+	this->visited.push_back(point);
 }
 
 void Environment::setVisited(Point location)
 {
-	this->map.setVisited(location);
+//	this->map.setVisited(location);
+	this->visited.push_back(location);
 }
 
 bool Environment::getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID)
