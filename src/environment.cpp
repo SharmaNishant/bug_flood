@@ -151,15 +151,15 @@ void Environment::setVisited(Point location, double cost)
 	}
 }
 
-bool Environment::getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID)
+bool Environment::getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID,Point &location )
 {
 	Line line;
 	line.start = start;
 	line.end = end;
-	return this->getObstacleIntersection(line, intersection, distance, boundaryID);
+	return this->getObstacleIntersection(line, intersection, distance, boundaryID, location);
 }
 
-bool Environment::getObstacleIntersection(Line line, Point &intersection, double &distance, int &boundaryID)
+bool Environment::getObstacleIntersection(Line line, Point &intersection, double &distance, int &boundaryID, Point &location)
 {
 	bool result = false;
 	double minDistance = INT_MAX;
@@ -169,6 +169,13 @@ bool Environment::getObstacleIntersection(Line line, Point &intersection, double
 	{
 		if(obsLine.first == boundaryID) continue; //skip test for same line
 		bool tresult = IsIntersecting(line, obsLine.second, intersection, distance);
+
+		if (location.x == intersection.x && location.y == intersection.y) {
+			//set which direction it should move in now
+			continue;
+		}
+
+
 		if(distance < minDistance)
 		{
 			result = true;
@@ -242,13 +249,14 @@ void Environment::generateObstacleLineMap()
 	this->lines[2] 	= GenLine(6  ,2  ,6  ,4);
 	this->lines[3] 	= GenLine(6  ,4  ,10 ,4);
 	this->lines[4] 	= GenLine(10 ,4  ,10 ,2);
+
 	this->lines[5] 	= GenLine(4  ,6  ,4  ,13);
 	this->lines[6] 	= GenLine(4  ,13 ,13 ,13);
 	this->lines[7] 	= GenLine(13 ,13 ,13 ,6);
 	this->lines[9] 	= GenLine(13 ,6  ,11 ,6);
 	this->lines[10] = GenLine(11 ,6  ,11 ,11);
-	this->lines[11] = GenLine(11 ,11 ,8  ,11);
-	this->lines[12] = GenLine(8  ,11 ,6  ,6);
+	this->lines[11] = GenLine(11 ,11 ,6  ,11);
+	this->lines[12] = GenLine(6  ,11 ,6  ,6);
 	this->lines[8] 	= GenLine(6  ,6  ,4  ,6);
 
 

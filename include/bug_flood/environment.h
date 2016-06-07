@@ -45,8 +45,8 @@ public:
 	void setVisited	(Point location, double cost);
 
 	//distance is from start of first line to the intersection point
-	bool getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID);
-	bool getObstacleIntersection(Line line, Point &intersection, double &distance, int &boundaryID);
+	bool getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID,Point &location);
+	bool getObstacleIntersection(Line line, Point &intersection, double &distance, int &boundaryID, Point &location);
 
 	bool getNextBoundaryLine(Point location, int &boundaryID, Point &tempGoal);
 
