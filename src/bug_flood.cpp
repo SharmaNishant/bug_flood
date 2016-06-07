@@ -30,13 +30,13 @@ int main(int argCount, char ** argValues)
 	ros::NodeHandle n;
 
 
-#ifdef PUBLISH_PATH
-	ros::Publisher pathPublisher = n.advertise<Marker>("bug_flood_path",1);
-	ros::Duration(1).sleep();
-	Marker pathTree;
-	Marker bugs;
-	initMarkers(bugs, pathTree);
-#endif
+	#ifdef PUBLISH_PATH
+		ros::Publisher pathPublisher = n.advertise<Marker>("bug_flood_path",1);
+		ros::Duration(1).sleep();
+		Marker pathTree;
+		Marker bugs;
+		initMarkers(bugs, pathTree);
+	#endif
 
 	Environment environment(argValues[1],argValues[2]);
 
@@ -52,9 +52,10 @@ int main(int argCount, char ** argValues)
 
 	while (ros::ok())
 	{
-#ifdef PUBLISH_PATH
-		publish_bugs(bugList,pathPublisher, bugs, pathTree);
-#endif
+		#ifdef PUBLISH_PATH
+				publish_bugs(bugList,pathPublisher, bugs, pathTree);
+		#endif
+
 		//Kill bugs that are done
 		KillBugs(bugList, finalBug);
 
@@ -111,6 +112,26 @@ int main(int argCount, char ** argValues)
 		ROS_INFO("Pruning Time = %d, %d", sec, nsec);
 		pruneTime = sec + (nsec / 1000000000.0);
 	}
+
+	#ifdef KINEMATIC_BUG
+		startTime = ros::Time::now();
+		vector<Point> resultingPath = finalBug.getpath();
+		double cost;
+
+		pruneRabbitCarrot(resultingPath, cost);
+
+		finalBug.setCost(cost);
+		endTime = ros::Time::now();
+		nsec = endTime.nsec - startTime.nsec;
+		sec = endTime.sec - startTime.sec;
+		if (nsec < 0) {
+			sec -= 1;
+			nsec += 1000000000;
+		}
+		ROS_INFO("RABBIT CARROT Pruning Time = %d, %d", sec, nsec);
+		pruneTime += (sec + (nsec / 1000000000.0));
+	#endif
+
 	ROS_INFO("COST %f", finalBug.getCost());
 
 	//if path is to be published

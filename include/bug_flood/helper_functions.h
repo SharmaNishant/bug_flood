@@ -16,6 +16,8 @@ std::vector<std::string> split(const std::string &s, char delim) ;
 
 
 bool IsIntersecting(Line first, Line second, Point &intersection, double &distance);
+void getPerpendicularLineIntersection(Line line, Point point, Point &intersection);
+
 double getEuclideanDistance(Point first, Point second);
 double getDirectionAngleRadian(Point goal, Point source);
 double getDirectionAngleDegrees(Point goal, Point source);

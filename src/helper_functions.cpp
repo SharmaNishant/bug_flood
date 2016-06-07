@@ -1,7 +1,7 @@
 //
 // Created by nishant on 15/5/16.
 //
-
+#include <bug_flood/type_decls.h>
 #include <bug_flood/helper_functions.h>
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems) {
@@ -67,6 +67,21 @@ bool IsIntersecting(Line first, Line second, Point &intersection, double &distan
 	}
 
 	return false; // No collision
+}
+
+void getPerpendicularLineIntersection(Line line, Point point, Point &intersection)
+{
+	// first convert line to normalized unit vector
+	double dx = line.end.x - line.start.x;
+	double dy = line.end.y - line.start.y;
+	double mag = sqrt(dx*dx + dy*dy);
+	dx /= mag;
+	dy /= mag;
+
+	// translate the point and get the dot product
+	double lambda = (dx * (point.x - line.start.x)) + (dy * (point.y - line.start.y));
+	intersection.x = (dx * lambda) + line.start.x;
+	intersection.y = (dy * lambda) + line.start.y;
 }
 
 double getEuclideanDistance(Point first, Point second)
