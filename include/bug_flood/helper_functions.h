@@ -8,16 +8,18 @@
 #include <string>
 #include <sstream>
 #include <vector>
-
-#include <geometry_msgs/Point.h>
-
-typedef geometry_msgs::Point Point;
+#include <bug_flood/type_decls.h>
+#include <bug_flood/environment.h>
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
 std::vector<std::string> split(const std::string &s, char delim) ;
 
 
-//bool IsIntersecting(Line first, Line second, Point &intersection);
+bool IsIntersecting(Line first, Line second, Point &intersection, double &distance);
 double getEuclideanDistance(Point first, Point second);
+double getDirectionAngleRadian(Point goal, Point source);
+double getDirectionAngleDegrees(Point goal, Point source);
+void prunePath(vector<Point> &inPath, Environment & environment, double &cost);
+
 
 #endif //BUG_FLOOD_HELPER_FUNCTIONS_H

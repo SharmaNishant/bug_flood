@@ -5,7 +5,7 @@
 #ifndef BUG_FLOOD_BUG_H
 #define BUG_FLOOD_BUG_H
 
-#include <bug_flood/envirnment.h>
+#include <bug_flood/environment.h>
 #include <bug_flood/helper_functions.h>
 #include <iostream>
 #include <fstream>
@@ -15,7 +15,10 @@
  * Alternative: If you don't have global environment add function parameter
  * */
 
+using namespace std;
+
 #define STEP_SIZE 1
+#define HEADING_ERROR 0.0001
 
 class Bug
 {
@@ -30,14 +33,21 @@ public:
 		TOWARDS_GOAL,
 		BOUNDARY_FOLLOWING,
 		FINISHED,
-		STUCK
+		STUCK,
+		RE_VISITING
 	};
 
-	void BoundaryFollow();
-	void TowardsGoal();
-	void Stuck();
-	void Finished();
-	Bug Split();
+	void BoundaryFollow(Environment &environment);
+	void TowardsGoal(Environment &environment, vector <Bug> &bugList);
+	void DumpPath(string filename);
+	Bug Split(Environment &environment);
+
+
+	State getState();
+	vector<Point> getpath();
+	double getCost();
+	Point getLocation();
+	void setCost(double cost);
 
 private:
 	int identifier;
@@ -48,7 +58,11 @@ private:
 	vector <Point> path;
 
 	static int IDENTIFIER_COUNTER;
+
+
+	Point simulateStep();
 };
 
-static int Bug::IDENTIFIER_COUNTER = 0;
+void KillBugs(vector<Bug> &bugList, Bug &bug);
+
 #endif //BUG_FLOOD_BUG_H

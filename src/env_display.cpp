@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <visualization_msgs/Marker.h>
-#include <bug_flood/envirnment.h>
+#include <bug_flood/environment.h>
 #include <bug_flood/helper_functions.h>
 
 //#define DEBUG std::cout << __FUNCTION__ << " " << __LINE__ << std::endl;

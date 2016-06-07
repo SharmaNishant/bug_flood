@@ -16,6 +16,7 @@
 #include <fstream>
 #include <bug_flood/map.h>
 #include <iostream>
+#include <bug_flood/type_decls.h>
 
 using namespace std;
 
@@ -42,11 +43,20 @@ public:
 	void setVisited	(int row, int col);
 	void setVisited	(Point location);
 
+	//distance is from start of first line to the intersection point
+	bool getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID);
+	bool getObstacleIntersection(Line line, Point &intersection, double &distance, int &boundaryID);
+
+	bool getNextBoundaryLine(Point location, int &boundaryID, Point &tempGoal);
+
 private:
 	/* Member Variables */
 	Map map;
 	Point source;
 	Point goal;
+	ObstacleList obstacleList;
+
+	void generateObstacleList();
 
 	/* Modifiers */
 	void ReadSourceGoal(string sourceGoal);
