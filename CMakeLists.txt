@@ -46,6 +46,7 @@ add_library(bug_flood_lib
 		src/helper_functions.cpp
 		src/map.cpp
 		src/environment.cpp
+		src/bug.cpp
 )
 
 ## Declare a cpp executable
@@ -59,7 +60,6 @@ target_link_libraries(env_display bug_flood_lib ${catkin_LIBRARIES} )
 
 add_executable(bug_flood
 		src/bug_flood.cpp
-		src/bug.cpp
 		src/bug_flood_extra.cpp)
 add_dependencies(bug_flood bug_flood_lib)
 target_link_libraries(bug_flood bug_flood_lib ${catkin_LIBRARIES} )

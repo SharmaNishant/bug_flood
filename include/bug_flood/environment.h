@@ -37,10 +37,10 @@ public:
 	void getEnvironmentDimensions(int &length, int &width);
 	vector<Point> getObstructedLocations(int &rowSize, int &colSize);
 
-	bool isVisited	(int row, int col);
+	bool isVisited	(double row, double col);
 	bool isVisited	(Point location);
 
-	void setVisited	(int row, int col);
+	void setVisited	(double row, double col);
 	void setVisited	(Point location);
 
 	//distance is from start of first line to the intersection point
@@ -55,6 +55,8 @@ private:
 	Point source;
 	Point goal;
 	ObstacleList obstacleList;
+
+	vector<Point> visited; //A global point set to keep track of what's visited and what's not
 
 	void generateObstacleList();
 
