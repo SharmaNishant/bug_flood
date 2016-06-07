@@ -4,7 +4,6 @@
 
 using namespace std;
 
-int Bug::IDENTIFIER_COUNTER = 0;
 
 int main(int argCount, char ** argValues)
 {
@@ -16,7 +15,7 @@ int main(int argCount, char ** argValues)
 		exit(0);
 	}
 	//path pruning is on by default
-	bool isPruneON = true;
+	bool isPruneON = false;
 	if(argCount >= 5)
 	{
 		if(!strcmp("false", argValues[4]))
@@ -29,15 +28,6 @@ int main(int argCount, char ** argValues)
 	ros::init(argCount,argValues,"bug_flood");
 	ros::NodeHandle n;
 
-
-	#ifdef PUBLISH_PATH
-		ros::Publisher pathPublisher = n.advertise<Marker>("bug_flood_path",1);
-		ros::Duration(1).sleep();
-		Marker pathTree;
-		Marker bugs;
-		initMarkers(bugs, pathTree);
-	#endif
-
 	Environment environment(argValues[1],argValues[2]);
 
 	Bug finalBug;
@@ -47,15 +37,21 @@ int main(int argCount, char ** argValues)
 	//add the first bug to the list
 	bugList.push_back(Bug(environment.getSource()));
 
+
+#ifdef PUBLISH_PATH
+	ros::Publisher pathPublisher = n.advertise<Marker>("bug_flood_path",1);
+	ros::Duration(1).sleep();
+	Marker pathTree;
+	Marker bugs;
+	initMarkers(bugs, pathTree);
+#endif
+
+
 	//start timer
 	ros::Time startTime = ros::Time::now();
 
 	while (ros::ok())
 	{
-		#ifdef PUBLISH_PATH
-				publish_bugs(bugList,pathPublisher, bugs, pathTree);
-		#endif
-
 		//Kill bugs that are done
 		KillBugs(bugList, finalBug);
 
@@ -78,6 +74,9 @@ int main(int argCount, char ** argValues)
 				bug.BoundaryFollow(environment);
 			}
 		}
+#ifdef PUBLISH_PATH
+		publish_bugs(bugList,pathPublisher, bugs, pathTree);
+#endif
 	}
 
 	//print the algo's running time
@@ -143,7 +142,7 @@ int main(int argCount, char ** argValues)
 
 	//logfile
 	ofstream logFile;
-	logFile.open("bugLog.txt",ofstream::app);
+	logFile.open(argValues[3],ofstream::app);
 
 	logFile << finalBug.getCost() << "," << mainTime << "," << pruneTime << endl;
 

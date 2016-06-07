@@ -65,7 +65,7 @@ bool IsIntersecting(Line first, Line second, Point &intersection, double &distan
 		distance = getEuclideanDistance(first.start, intersection);
 		return true;
 	}
-
+	distance = INT_MAX;
 	return false; // No collision
 }
 

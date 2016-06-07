@@ -22,7 +22,7 @@ void publish_bugs(vector<Bug> &bugList, ros::Publisher &publisher, Marker &bugs,
 void publish_bug(Bug &bug, ros::Publisher &publisher, Marker &pathTree);
 #endif
 
-#define KINEMATIC_BUG
+//#define KINEMATIC_BUG
 
 #ifdef KINEMATIC_BUG
 

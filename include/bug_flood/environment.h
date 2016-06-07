@@ -29,7 +29,7 @@ public:
 
 	/* Accessor Functions */
 	//to be implemented by the client
-	virtual bool isObstructed(void* location);
+	virtual bool isObstructed(Point location);
 	Point getSource();
 	Point getGoal();
 	int getEnvironmentLength();
@@ -37,11 +37,12 @@ public:
 	void getEnvironmentDimensions(int &length, int &width);
 	vector<Point> getObstructedLocations(int &rowSize, int &colSize);
 
-	bool isVisited	(double row, double col);
-	bool isVisited	(Point location);
+	//-1 if not visited
+	double isVisited(double row, double col);
+	double isVisited(Point location);
 
-	void setVisited	(double row, double col);
-	void setVisited	(Point location);
+	void setVisited	(double row, double col, double cost);
+	void setVisited	(Point location, double cost);
 
 	//distance is from start of first line to the intersection point
 	bool getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID);
@@ -49,16 +50,18 @@ public:
 
 	bool getNextBoundaryLine(Point location, int &boundaryID, Point &tempGoal);
 
+	Line getLine(int id);
+
 private:
 	/* Member Variables */
 	Map map;
 	Point source;
 	Point goal;
-	ObstacleList obstacleList;
+	ObstacleLines lines;
 
-	vector<Point> visited; //A global point set to keep track of what's visited and what's not
+	vector<VisitInfo> visited; //A global point set to keep track of what's visited and what's not
 
-	void generateObstacleList();
+	void generateObstacleLineMap();
 
 	/* Modifiers */
 	void ReadSourceGoal(string sourceGoal);

@@ -24,9 +24,9 @@ void initMarkers(Marker &bugs, Marker &pathTree)
 
 	//setting scale
 	pathTree.scale.x     = 1;
-	bugs.scale.x   = 2;
-	bugs.scale.y   = 2;
-	bugs.scale.z   = 2;
+	bugs.scale.x   = 0.5;
+	bugs.scale.y   = 0.5;
+	bugs.scale.z   = 0.5;
 
 	//assigning colors
 	bugs.color.r   = 1.0f;
@@ -49,7 +49,6 @@ void publish_bugs(vector<Bug> &bugList, ros::Publisher &publisher, Marker &bugs,
 	for(Bug &bug : bugList)
 	{
 		bugs.points.push_back(bug.getLocation());
-
 		//push the last line of the bug as a line in path tree
 		vector<Point> path = bug.getpath();
 		pathTree.points.push_back(path[path.size()-2]);
@@ -162,7 +161,6 @@ void pruneRabbitCarrot(vector<Point> &inPath, double &cost)
 	path.push_back(bugPath[bugPath.size()-1]);
 	inPath = path;
 }
-
 
 #endif
 

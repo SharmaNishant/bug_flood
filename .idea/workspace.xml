@@ -45,9 +45,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4947c524-cb6b-40a8-8860-44d2c1829aa0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bug_flood/bug.h" afterPath="$PROJECT_DIR$/include/bug_flood/bug.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bug_flood/bug_flood.h" afterPath="$PROJECT_DIR$/include/bug_flood/bug_flood.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bug_flood/environment.h" afterPath="$PROJECT_DIR$/include/bug_flood/environment.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/include/bug_flood/type_decls.h" afterPath="$PROJECT_DIR$/include/bug_flood/type_decls.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bug.cpp" afterPath="$PROJECT_DIR$/src/bug.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bug_flood.cpp" afterPath="$PROJECT_DIR$/src/bug_flood.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bug_flood_extra.cpp" afterPath="$PROJECT_DIR$/src/bug_flood_extra.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/environment.cpp" afterPath="$PROJECT_DIR$/src/environment.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/helper_functions.cpp" afterPath="$PROJECT_DIR$/src/helper_functions.cpp" />
     </list>
     <ignored path="bug_flood.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,133 +68,105 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="bug.cpp" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/bug.cpp">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="274">
-                    <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
-                    <folding>
-                      <element signature="e#1267#1532#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="bug_flood_extra.cpp" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/bug_flood_extra.cpp">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="522">
-                    <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-                    <folding>
-                      <element signature="e#0#2#0" expanded="false" />
-                      <element signature="e#94#966#0" expanded="false" />
-                      <element signature="e#968#1671#0" expanded="false" />
-                      <element signature="e#1118#1226#0" expanded="false" />
-                      <element signature="e#1673#2012#0" expanded="false" />
-                      <element signature="e#2044#3197#0" expanded="false" />
-                      <element signature="e#3199#3460#0" expanded="false" />
-                      <element signature="e#3462#4273#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="environment.cpp" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/environment.cpp">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="454">
-                    <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-                    <folding>
-                      <element signature="e#0#2#0" expanded="false" />
-                      <element signature="e#117#157#0" expanded="false" />
-                      <element signature="e#117#277#0" expanded="false" />
-                      <element signature="e#279#385#0" expanded="false" />
-                      <element signature="e#388#444#0" expanded="false" />
-                      <element signature="e#446#498#0" expanded="false" />
-                      <element signature="e#500#575#0" expanded="false" />
-                      <element signature="e#577#651#0" expanded="false" />
-                      <element signature="e#653#790#0" expanded="false" />
-                      <element signature="e#792#932#0" expanded="false" />
-                      <element signature="e#934#1053#0" expanded="false" />
-                      <element signature="e#1056#1654#0" expanded="false" />
-                      <element signature="e#1656#1940#0" expanded="false" />
-                      <element signature="e#1942#2233#0" expanded="false" />
-                      <element signature="e#2235#2418#0" expanded="false" />
-                      <element signature="e#2420#2539#0" expanded="false" />
-                      <element signature="e#2541#2797#0" expanded="false" />
-                      <element signature="e#2799#3432#0" expanded="false" />
-                      <element signature="e#3434#4269#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="helper_functions.cpp" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/helper_functions.cpp">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="522">
-                    <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
-                    <folding>
-                      <element signature="e#0#2#0" expanded="false" />
-                      <element signature="e#40#73#0" expanded="true" />
-                      <element signature="e#115#346#0" expanded="false" />
-                      <element signature="e#349#487#0" expanded="false" />
-                      <element signature="e#489#1661#0" expanded="false" />
-                      <element signature="e#1663#2166#0" expanded="false" />
-                      <element signature="e#2168#2297#0" expanded="false" />
-                      <element signature="e#2299#2412#0" expanded="false" />
-                      <element signature="e#2414#2589#0" expanded="false" />
-                      <element signature="e#2591#3862#0" expanded="false" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="bug_flood" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bug.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/bug_flood/bug.h">
+      <file leaf-file-name="bug.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/bug.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
+            <state relative-caret-position="346">
+              <caret line="77" column="98" selection-start-line="77" selection-start-column="98" selection-end-line="77" selection-end-column="98" />
               <folding>
-                <element signature="e#90#124#0" expanded="true" />
+                <element signature="e#0#2#0" expanded="false" />
+                <element signature="e#103#205#0" expanded="false" />
+                <element signature="e#207#384#0" expanded="false" />
+                <element signature="e#802#851#0" expanded="false" />
+                <element signature="e#954#1097#0" expanded="false" />
+                <element signature="e#1207#1356#0" expanded="false" />
+                <element signature="e#4109#6156#0" expanded="false" />
+                <element signature="e#5262#5326#0" expanded="false" />
+                <element signature="e#6158#6423#0" expanded="false" />
+                <element signature="e#6426#6640#0" expanded="false" />
+                <element signature="e#6643#7067#0" expanded="false" />
+                <element signature="e#7069#7326#0" expanded="false" />
+                <element signature="e#7329#7380#0" expanded="false" />
+                <element signature="e#7382#7434#0" expanded="false" />
+                <element signature="e#7435#7480#0" expanded="false" />
+                <element signature="e#7481#7533#0" expanded="false" />
+                <element signature="e#7534#7588#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bug_flood.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/bug_flood/bug_flood.h">
+      <file leaf-file-name="bug_flood_extra.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bug_flood_extra.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state relative-caret-position="467">
+              <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
               <folding>
-                <element signature="e#102#122#0" expanded="true" />
+                <element signature="e#0#2#0" expanded="false" />
+                <element signature="e#1124#1232#0" expanded="false" />
+                <element signature="e#1678#2017#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="helper_functions.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/bug_flood/helper_functions.h">
+      <file leaf-file-name="bug_flood.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bug_flood.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+            <state relative-caret-position="632">
+              <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+              <folding>
+                <element signature="e#2620#3059#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new_allocator.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/c++/5/ext/new_allocator.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="environment.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/environment.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="123" column="18" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#2#0" expanded="false" />
+                <element signature="e#117#157#0" expanded="false" />
+                <element signature="e#117#277#0" expanded="false" />
+                <element signature="e#416#472#0" expanded="false" />
+                <element signature="e#474#526#0" expanded="false" />
+                <element signature="e#528#603#0" expanded="false" />
+                <element signature="e#605#679#0" expanded="false" />
+                <element signature="e#681#818#0" expanded="false" />
+                <element signature="e#820#960#0" expanded="false" />
+                <element signature="e#1091#1689#0" expanded="false" />
+                <element signature="e#1691#2002#0" expanded="false" />
+                <element signature="e#2004#2321#0" expanded="false" />
+                <element signature="e#2969#3225#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="stl_map.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/c++/5/bits/stl_map.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="338" column="0" selection-start-line="338" selection-start-column="0" selection-end-line="338" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -197,28 +175,8 @@
       <file leaf-file-name="environment.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/bug_flood/environment.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="type_decls.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/include/bug_flood/type_decls.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+            <state relative-caret-position="51">
+              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -243,18 +201,18 @@
         <option value="$PROJECT_DIR$/src/map.cpp" />
         <option value="$PROJECT_DIR$/include/bug_flood/envirnment.h" />
         <option value="$PROJECT_DIR$/src/envirnment.cpp" />
-        <option value="$PROJECT_DIR$/include/bug_flood/type_decls.h" />
         <option value="$PROJECT_DIR$/obstacles/test_obstacle/source_goal_1.txt" />
-        <option value="$PROJECT_DIR$/include/bug_flood/bug.h" />
-        <option value="$PROJECT_DIR$/src/bug.cpp" />
         <option value="$PROJECT_DIR$/include/bug_flood/helper_functions.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/include/bug_flood/type_decls.h" />
+        <option value="$PROJECT_DIR$/include/bug_flood/bug.h" />
         <option value="$PROJECT_DIR$/include/bug_flood/bug_flood.h" />
-        <option value="$PROJECT_DIR$/src/bug_flood.cpp" />
-        <option value="$PROJECT_DIR$/src/bug_flood_extra.cpp" />
         <option value="$PROJECT_DIR$/src/helper_functions.cpp" />
         <option value="$PROJECT_DIR$/include/bug_flood/environment.h" />
+        <option value="$PROJECT_DIR$/src/bug_flood_extra.cpp" />
+        <option value="$PROJECT_DIR$/src/bug_flood.cpp" />
         <option value="$PROJECT_DIR$/src/environment.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/bug.cpp" />
       </list>
     </option>
   </component>
@@ -296,24 +254,7 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bug_flood" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bug_flood" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bug_flood" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
     </panes>
   </component>
@@ -494,7 +435,7 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="false" name="bug_flood" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="bug_flood" TARGET_NAME="bug_flood" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="bug_flood" RUN_TARGET_NAME="bug_flood">
+    <configuration default="false" name="bug_flood" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/obstacles/test_obstacle/15xsg.txt /home/nishant/projects/catkin_ws/src/bug_flood/obstacles/test_obstacle/15xmap.txt /home/nishant/projects/catkin_ws/src/bug_flood/obstacles/test_obstacle/bugLog.txt" WORKING_DIR="" PASS_PARENT_ENVS_2="true" PROJECT_NAME="bug_flood" TARGET_NAME="bug_flood" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="bug_flood" RUN_TARGET_NAME="bug_flood">
       <envs />
       <method />
     </configuration>
@@ -683,17 +624,17 @@
     <frame x="1600" y="27" width="1280" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24840765" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24761146" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44094488" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44094488" sideWeight="0.49746192" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32283464" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44094488" sideWeight="0.5025381" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.49746192" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32913387" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3984252" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39763778" sideWeight="0.49746192" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -716,52 +657,31 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/bug.cpp</url>
+          <line>184</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/bug_flood.cpp</url>
+          <line>39</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/bug.cpp</url>
+          <line>160</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="17" />
+      <option name="time" value="36" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/include/bug_flood/environment.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/environment.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bug_flood/bug_flood.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bug_flood/environment.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/env_display.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/environment.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
@@ -940,37 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/map.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="267" column="1" selection-start-line="267" selection-start-column="1" selection-end-line="267" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#145#320#0" expanded="false" />
-            <element signature="e#322#371#0" expanded="false" />
-            <element signature="e#373#1637#0" expanded="false" />
-            <element signature="e#1639#1845#0" expanded="false" />
-            <element signature="e#1847#1998#0" expanded="false" />
-            <element signature="e#2000#2515#0" expanded="false" />
-            <element signature="e#2517#2916#0" expanded="false" />
-            <element signature="e#2918#3138#0" expanded="false" />
-            <element signature="e#3140#3489#0" expanded="false" />
-            <element signature="e#3492#3703#0" expanded="false" />
-            <element signature="e#3705#4046#0" expanded="false" />
-            <element signature="e#4048#4269#0" expanded="false" />
-            <element signature="e#4271#4622#0" expanded="false" />
-            <element signature="e#4624#4847#0" expanded="false" />
-            <element signature="e#4849#5170#0" expanded="false" />
-            <element signature="e#5172#5378#0" expanded="false" />
-            <element signature="e#5380#5640#0" expanded="false" />
-            <element signature="e#5642#5684#0" expanded="false" />
-            <element signature="e#5686#5728#0" expanded="false" />
-            <element signature="e#5730#5800#0" expanded="false" />
-            <element signature="e#5802#5934#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/bug_flood/map.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
@@ -995,65 +884,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/bug_flood/type_decls.h">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        <state relative-caret-position="259">
+          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bug_flood.cpp">
+    <entry file="file://$PROJECT_DIR$/include/bug_flood/type_decls.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bug_flood/bug.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
-          <folding>
-            <element signature="e#90#124#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bug.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
-          <folding>
-            <element signature="e#1267#1532#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bug_flood_extra.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="167" column="0" selection-start-line="167" selection-start-column="0" selection-end-line="167" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#94#966#0" expanded="false" />
-            <element signature="e#968#1671#0" expanded="false" />
-            <element signature="e#1118#1226#0" expanded="false" />
-            <element signature="e#1673#2012#0" expanded="false" />
-            <element signature="e#2044#3197#0" expanded="false" />
-            <element signature="e#3199#3460#0" expanded="false" />
-            <element signature="e#3462#4273#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/include/bug_flood/helper_functions.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+        <state relative-caret-position="54">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1063,71 +905,191 @@
         <state relative-caret-position="205">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#102#122#0" expanded="true" />
+            <element signature="e#627#841#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bug_flood/bug.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="30" column="14" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+          <folding>
+            <element signature="e#90#124#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/bug_flood/helper_functions.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/helper_functions.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state relative-caret-position="810">
+          <caret line="59" column="29" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
           <folding>
             <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#40#73#0" expanded="true" />
             <element signature="e#115#346#0" expanded="false" />
             <element signature="e#349#487#0" expanded="false" />
-            <element signature="e#489#1661#0" expanded="false" />
-            <element signature="e#1663#2166#0" expanded="false" />
-            <element signature="e#2168#2297#0" expanded="false" />
-            <element signature="e#2299#2412#0" expanded="false" />
-            <element signature="e#2414#2589#0" expanded="false" />
-            <element signature="e#2591#3862#0" expanded="false" />
+            <element signature="e#1683#2186#0" expanded="false" />
+            <element signature="e#2188#2317#0" expanded="false" />
+            <element signature="e#2319#2432#0" expanded="false" />
+            <element signature="e#2434#2609#0" expanded="false" />
+            <element signature="e#2611#3882#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/environment.cpp">
+    <entry file="file:///usr/include/c++/5/bits/vector.tcc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        <state relative-caret-position="141">
+          <caret line="437" column="0" selection-start-line="437" selection-start-column="0" selection-end-line="437" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/alloc_traits.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="516" column="0" selection-start-line="516" selection-start-column="0" selection-end-line="516" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/map.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="206" column="0" selection-start-line="206" selection-start-column="0" selection-end-line="206" selection-end-column="0" />
           <folding>
             <element signature="e#0#2#0" expanded="false" />
-            <element signature="e#117#157#0" expanded="false" />
-            <element signature="e#117#277#0" expanded="false" />
-            <element signature="e#279#385#0" expanded="false" />
-            <element signature="e#388#444#0" expanded="false" />
-            <element signature="e#446#498#0" expanded="false" />
-            <element signature="e#500#575#0" expanded="false" />
-            <element signature="e#577#651#0" expanded="false" />
-            <element signature="e#653#790#0" expanded="false" />
-            <element signature="e#792#932#0" expanded="false" />
-            <element signature="e#934#1053#0" expanded="false" />
-            <element signature="e#1056#1654#0" expanded="false" />
-            <element signature="e#1656#1940#0" expanded="false" />
-            <element signature="e#1942#2233#0" expanded="false" />
-            <element signature="e#2235#2418#0" expanded="false" />
-            <element signature="e#2420#2539#0" expanded="false" />
-            <element signature="e#2541#2797#0" expanded="false" />
-            <element signature="e#2799#3432#0" expanded="false" />
-            <element signature="e#3434#4269#0" expanded="false" />
+            <element signature="e#145#320#0" expanded="false" />
+            <element signature="e#322#371#0" expanded="false" />
+            <element signature="e#373#1637#0" expanded="false" />
+            <element signature="e#1639#1845#0" expanded="false" />
+            <element signature="e#1847#1998#0" expanded="false" />
+            <element signature="e#2000#2515#0" expanded="false" />
+            <element signature="e#2517#2916#0" expanded="false" />
+            <element signature="e#2918#3138#0" expanded="false" />
+            <element signature="e#3140#3489#0" expanded="false" />
+            <element signature="e#3492#3703#0" expanded="false" />
+            <element signature="e#3705#4046#0" expanded="false" />
+            <element signature="e#4048#4269#0" expanded="false" />
+            <element signature="e#4624#4847#0" expanded="false" />
+            <element signature="e#4849#5170#0" expanded="false" />
+            <element signature="e#5172#5378#0" expanded="false" />
+            <element signature="e#5380#5640#0" expanded="false" />
+            <element signature="e#5642#5684#0" expanded="false" />
+            <element signature="e#5686#5728#0" expanded="false" />
+            <element signature="e#5730#5800#0" expanded="false" />
+            <element signature="e#5802#5934#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bug_flood_extra.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="28" column="24" selection-start-line="28" selection-start-column="24" selection-end-line="28" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+            <element signature="e#1124#1232#0" expanded="false" />
+            <element signature="e#1678#2017#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/stl_map.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="338" column="0" selection-start-line="338" selection-start-column="0" selection-end-line="338" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/ext/new_allocator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bug_flood.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="98" column="37" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+          <folding>
+            <element signature="e#2620#3059#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/bug_flood/environment.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+        <state relative-caret-position="51">
+          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/src/environment.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="48" column="19" selection-start-line="48" selection-start-column="19" selection-end-line="48" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="313">
+          <caret line="123" column="18" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+            <element signature="e#117#157#0" expanded="false" />
+            <element signature="e#117#277#0" expanded="false" />
+            <element signature="e#416#472#0" expanded="false" />
+            <element signature="e#474#526#0" expanded="false" />
+            <element signature="e#528#603#0" expanded="false" />
+            <element signature="e#605#679#0" expanded="false" />
+            <element signature="e#681#818#0" expanded="false" />
+            <element signature="e#820#960#0" expanded="false" />
+            <element signature="e#1091#1689#0" expanded="false" />
+            <element signature="e#1691#2002#0" expanded="false" />
+            <element signature="e#2004#2321#0" expanded="false" />
+            <element signature="e#2969#3225#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bug.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="77" column="98" selection-start-line="77" selection-start-column="98" selection-end-line="77" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+            <element signature="e#103#205#0" expanded="false" />
+            <element signature="e#207#384#0" expanded="false" />
+            <element signature="e#802#851#0" expanded="false" />
+            <element signature="e#954#1097#0" expanded="false" />
+            <element signature="e#1207#1356#0" expanded="false" />
+            <element signature="e#4109#6156#0" expanded="false" />
+            <element signature="e#5262#5326#0" expanded="false" />
+            <element signature="e#6158#6423#0" expanded="false" />
+            <element signature="e#6426#6640#0" expanded="false" />
+            <element signature="e#6643#7067#0" expanded="false" />
+            <element signature="e#7069#7326#0" expanded="false" />
+            <element signature="e#7329#7380#0" expanded="false" />
+            <element signature="e#7382#7434#0" expanded="false" />
+            <element signature="e#7435#7480#0" expanded="false" />
+            <element signature="e#7481#7533#0" expanded="false" />
+            <element signature="e#7534#7588#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
