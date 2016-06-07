@@ -40,7 +40,7 @@ public:
 	void BoundaryFollow(Environment &environment);
 	void TowardsGoal(Environment &environment, vector <Bug> &bugList);
 	void DumpPath(string filename);
-	Bug Split(Environment &environment);
+	Bug split(Environment &environment);
 
 
 	State getState();
@@ -56,9 +56,14 @@ private:
 	double cost;
 	double heading;
 	vector <Point> path;
+	int onBoundary;
+	Point boundaryGoal;
 
 	static int IDENTIFIER_COUNTER;
 
+	bool isCrossingPaths(Point goal);
+
+	bool canLeaveBoundary(Environment & environment);
 
 	Point simulateStep();
 };

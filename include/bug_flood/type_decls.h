@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <geometry_msgs/Point.h>
+#include <map>
 
 using namespace std;
 
@@ -18,14 +19,21 @@ struct Line
 	Point end;
 };
 
-struct ObstacleLine
-{
-	int boundaryID;
-	Line line;
-};
+//struct ObstacleLine
+//{
+//	int boundaryID;
+//	Line line;
+//};
 
-typedef vector<ObstacleLine> Obstacle;
-typedef vector<Obstacle> ObstacleList;
+//typedef vector<ObstacleLine> Obstacle;
+typedef map<int, Line> ObstacleLines;
+//typedef vector<Obstacle> ObstacleList;
 typedef vector<Point> Path;
+
+struct VisitInfo
+{
+	Point location;
+	double cost;
+};
 
 #endif //BUG_FLOOD_TYPE_DECLS_H

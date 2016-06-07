@@ -19,6 +19,7 @@ Environment::Environment(string sourceGoal, int length, int width): map(length,w
 Environment::Environment(string sourceGoal, string mapFile): map(mapFile)
 {
 	ReadSourceGoal(sourceGoal);
+	generateObstacleLineMap();
 }
 
 
@@ -53,10 +54,10 @@ vector<Point> Environment::getObstructedLocations(int &rowSize, int &colSize)
 	return this->map.getObstructedLocations(rowSize,colSize);
 }
 
-bool Environment::isObstructed(void* location)
+bool Environment::isObstructed(Point location)
 {
-	Point loc = *(Point*)location;
-	return this->map.isObstructed(loc);
+//	Point loc = *(Point*)location;
+	return this->map.isObstructed(location);
 }
 
 
@@ -88,49 +89,66 @@ void Environment::ReadSourceGoal(string sourceGoal)
 	infile.close();
 }
 
-bool Environment::isVisited	(double row, double col)
+double Environment::isVisited	(double row, double col)
 {
 //	return this->map.isVisited(row,col); //Not using map based visited information anymore
 	/*
 	 * New approach
 	 */
-	for (Point &point : this->visited)
+	for (VisitInfo &point : this->visited)
 	{
-		if(point.x == row && point.y == col)
-			return true;
+		if(point.location.x == row && point.location.y == col)
+			return point.cost;
 	}
-	return false;
+	return -1;
 }
 
-bool Environment::isVisited	(Point location)
+double Environment::isVisited	(Point location)
 {
 //	return this->map.isVisited(row,col); //Not using map based visited information anymore
 	/*
 	 * new approach
 	 */
-	for (Point &point : this->visited)
+	for (VisitInfo &point : this->visited)
 	{
-		if(point.x == location.x && point.y == location.y)
-			return true;
+		if(point.location.x == location.x && point.location.y == location.y)
+			return point.cost;
 	}
-	return false;
-
+	return -1;
 }
 
-void Environment::setVisited(double row, double col)
+void Environment::setVisited(double row, double col, double cost)
 {
 //	this->map.setVisited(row,col);
 	Point point;
 	point.x = row;
 	point.y = col;
 	point.z = 0;
-	this->visited.push_back(point);
+	this->setVisited(point,cost);
 }
 
-void Environment::setVisited(Point location)
+void Environment::setVisited(Point location, double cost)
 {
-//	this->map.setVisited(location);
-	this->visited.push_back(location);
+	bool found = false;
+	for (int i = 0; i < this->visited.size(); ++i)
+	{
+		if(visited[i].location.x == location.x && visited[i].location.y == location.y)
+		{
+			found = true;
+			if(cost < visited[i].cost)
+			{
+				visited[i].cost = cost;
+			}
+		}
+	}
+
+	if(!found)
+	{
+		VisitInfo visitInfo;
+		visitInfo.location = location;
+		visitInfo.cost = cost;
+		this->visited.push_back(visitInfo);
+	}
 }
 
 bool Environment::getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID)
@@ -143,20 +161,20 @@ bool Environment::getObstacleIntersection(Point start, Point end, Point &interse
 
 bool Environment::getObstacleIntersection(Line line, Point &intersection, double &distance, int &boundaryID)
 {
-	bool result;
+	bool result = false;
 	double minDistance = INT_MAX;
 	Point minIntersection;
-	int minBoundaryID;
-	for(Obstacle &obstacle : this->obstacleList)
+	int minBoundaryID = -1;
+	for(auto &obsLine : this->lines)
 	{
-		for(ObstacleLine &obstacleLine : obstacle)
+		if(obsLine.first == boundaryID) continue; //skip test for same line
+		bool tresult = IsIntersecting(line, obsLine.second, intersection, distance);
+		if(distance < minDistance)
 		{
-			result = IsIntersecting(line, obstacleLine.line, intersection, distance);
-			if(distance < minDistance)
-			{
-				minDistance = distance;
-				minIntersection = intersection;
-			}
+			result = true;
+			minDistance = distance;
+			minIntersection = intersection;
+			minBoundaryID = obsLine.first;
 		}
 	}
 
@@ -171,31 +189,67 @@ bool Environment::getNextBoundaryLine(Point location, int &boundaryID, Point &te
 {
 	//copy boundary id for static reference
 	int boundary = boundaryID;
-	for(Obstacle &obstacle : this->obstacleList)
+	for(auto &obsLine : this->lines)
 	{
-		for(ObstacleLine &obstacleLine : obstacle)
-		{
-			if(obstacleLine.boundaryID == boundary)
-			{
-				continue;
-			}
-			if(obstacleLine.line.start.x == location.x && obstacleLine.line.start.y == location.y)
-			{
-				//set which direction it should move in now
-				tempGoal = obstacleLine.line.end;
-				boundaryID = obstacleLine.boundaryID;
-				return true;
-			}
-			if(obstacleLine.line.end.x == location.x && obstacleLine.line.end.y == location.y)
-			{
-				//set which direction it should move in now
-				tempGoal = obstacleLine.line.start;
-				boundaryID = obstacleLine.boundaryID;
-				return true;
-			}
+		if (obsLine.first == boundary) {
+			continue;
+		}
+		if (obsLine.second.start.x == location.x && obsLine.second.start.y == location.y) {
+			//set which direction it should move in now
+			tempGoal = obsLine.second.end;
+			boundaryID = obsLine.first;
+			return true;
+		}
+		if (obsLine.second.end.x == location.x && obsLine.second.end.y == location.y) {
+			//set which direction it should move in now
+			tempGoal = obsLine.second.start;
+			boundaryID = obsLine.first;
+			return true;
 		}
 	}
 	return false;
 }
 
+Line Environment::getLine(int id)
+{
+	ObstacleLines::iterator it;
+	it = this->lines.find(id);
+	if(it != this->lines.end())
+	{
+		return it->second;
+	}
+	else
+	{
+		assert(!"TRYING TO ACCESS A NON EXISTING LINE!!! EXITING");
+	}
+}
 
+Line GenLine(double oneY, double oneX, double twoY, double twoX)
+{
+	Line line;
+	line.start.x = oneX;
+	line.start.y = oneY;
+	line.start.z = 0;
+	line.end.x = twoX;
+	line.end.y = twoY;
+	line.end.z = 0;
+	return line;
+}
+
+void Environment::generateObstacleLineMap()
+{
+	this->lines[1] 	= GenLine(6  ,2  ,10 ,2);
+	this->lines[2] 	= GenLine(6  ,2  ,6  ,4);
+	this->lines[3] 	= GenLine(6  ,4  ,10 ,4);
+	this->lines[4] 	= GenLine(10 ,4  ,10 ,2);
+	this->lines[5] 	= GenLine(4  ,6  ,4  ,13);
+	this->lines[6] 	= GenLine(4  ,13 ,13 ,13);
+	this->lines[7] 	= GenLine(13 ,13 ,13 ,6);
+	this->lines[9] 	= GenLine(13 ,6  ,11 ,6);
+	this->lines[10] = GenLine(11 ,6  ,11 ,11);
+	this->lines[11] = GenLine(11 ,11 ,8  ,11);
+	this->lines[12] = GenLine(8  ,11 ,6  ,6);
+	this->lines[8] 	= GenLine(6  ,6  ,4  ,6);
+
+
+}
