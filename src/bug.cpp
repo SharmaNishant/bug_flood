@@ -77,8 +77,16 @@ void Bug::BoundaryFollow(Environment &environment)
 			this->path.push_back(this->location);
 			environment.getNextBoundaryLine(this->location, this->onBoundary, this->boundaryGoal);
 		}
+		double isVisited = environment.isVisited(this->location);
+		if(isVisited != -1  && this->cost > isVisited)
+		{
+			this->state = RE_VISITING;
+		}
+		else
+		{
+			environment.setVisited(this->location, this->cost);
+		}
 
-//
 	}
 }
 
@@ -90,17 +98,18 @@ bool Bug::canLeaveBoundary(Environment &environment)
 	newLocation.y = this->location.y + (0.1 * sin(this->heading));
 	//check if we can move towards goal now
 	//is route to goal clear
-	Line line;
-	line.start = newLocation;
-	line.end = environment.getGoal();
-
-	Point intersection;
-	double distIntersection;
-	int intersectingBoundaryID = this->onBoundary;
-	bool isRouteBlocked = environment.getObstacleIntersection(line, intersection, distIntersection, intersectingBoundaryID);
+//	Line line;
+//	line.start = newLocation;
+//	line.end = environment.getGoal();
+//
+//	Point intersection;
+//	double distIntersection;
+//	int intersectingBoundaryID = this->onBoundary;
+//	bool isRouteBlocked = environment.getObstacleIntersection(line, intersection, distIntersection, intersectingBoundaryID);
 	//we can move towards goal
 	//the way is clear till goal or we can atleast move one step in goal's direction
-	if(!isRouteBlocked || !environment.isObstructed(newLocation))
+	//if(!isRouteBlocked || !environment.isObstructed(newLocation))
+	if(!environment.isObstructed(newLocation))
 	{
 		//now check if we are clear to leave from this point
 		bool crossingPaths = this->isCrossingPaths(environment.getGoal());
@@ -108,7 +117,7 @@ bool Bug::canLeaveBoundary(Environment &environment)
 		{
 			//now we make it a leave point
 			double isVisited = environment.isVisited(this->location);
-			if(isVisited != -1  && this->cost >= isVisited)
+			if(isVisited != -1  && this->cost > isVisited)
 			{
 				this->state = RE_VISITING;
 				return true;
@@ -117,6 +126,7 @@ bool Bug::canLeaveBoundary(Environment &environment)
 			{
 				environment.setVisited(this->location, this->cost);
 				this->path.push_back(this->location); //because it's a leave point
+				//cout << this-> identifier << " " << this->location.x << " " << this->location.y << endl;
 				//also move a step
 //				this->cost += getEuclideanDistance(this->location, newLocation);
 //				this->location = newLocation;
@@ -166,7 +176,14 @@ void Bug::TowardsGoal(Environment &environment, vector<Bug> &bugList)
 	Point intersection;
 	double distIntersection;
 	int intersectingBoundaryID = this->onBoundary;
-	bool isRouteBlocked = environment.getObstacleIntersection(line, intersection, distIntersection, intersectingBoundaryID);
+	bool isRouteBlocked = environment.getObstacleIntersection(line, intersection, distIntersection, intersectingBoundaryID, this->location);
+
+//	if (this->location.x == intersection.x && this->location.y == intersection.y) {
+//		//set which direction it should move in now
+//		isRouteBlocked = false;
+//	}
+
+
 
 	//move bug to goal and set it's state to finish
 	if(!isRouteBlocked)
@@ -189,7 +206,7 @@ void Bug::TowardsGoal(Environment &environment, vector<Bug> &bugList)
 		this->path.push_back(this->location);
 
 		//set visited location
-		environment.setVisited(intersection, this->cost);
+		//environment.setVisited(intersection, this->cost);
 
 		//now split and add bug to the list
 		Bug newBug = this->split(environment);
@@ -309,4 +326,9 @@ Point Bug::getLocation()
 void Bug::setCost(double cost)
 {
 	this->cost = cost;
+}
+
+void Bug::setPath(vector<Point> path)
+{
+	this->path = path;
 }

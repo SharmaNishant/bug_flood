@@ -15,7 +15,7 @@ int main(int argCount, char ** argValues)
 		exit(0);
 	}
 	//path pruning is on by default
-	bool isPruneON = false;
+	bool isPruneON = true;
 	if(argCount >= 5)
 	{
 		if(!strcmp("false", argValues[4]))
@@ -101,6 +101,7 @@ int main(int argCount, char ** argValues)
 		double cost;
 		prunePath(resultingPath, environment, cost);
 		finalBug.setCost(cost);
+		finalBug.setPath(resultingPath);
 		endTime = ros::Time::now();
 		nsec = endTime.nsec - startTime.nsec;
 		sec = endTime.sec - startTime.sec;

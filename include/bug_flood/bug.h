@@ -48,6 +48,7 @@ public:
 	double getCost();
 	Point getLocation();
 	void setCost(double cost);
+	void setPath(vector<Point> path);
 
 private:
 	int identifier;

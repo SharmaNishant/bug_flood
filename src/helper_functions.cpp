@@ -121,8 +121,8 @@ void prunePath(vector<Point> &inPath, Environment & environment, double &cost)
 		lastIntersection = i+1;
 		for(j=i+2;j<inPath.size();j++)
 		{
-
-			intersectionResult = environment.getObstacleIntersection(prunedPath[prunedPath.size() - 1], inPath[j], intersection, tempCost, tempID);
+			//VERIFY NEXT LINE"S LAST PARAMETER IF NOT PERFORMINING
+			intersectionResult = environment.getObstacleIntersection(prunedPath[prunedPath.size() - 1], inPath[j], intersection, tempCost, tempID, inPath[j]);
 			if(!intersectionResult) //intersection not detected
 			{
 				lastIntersection = j;
