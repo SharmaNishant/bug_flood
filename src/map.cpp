@@ -47,19 +47,14 @@ void Map::readMap(string filename)
 	//to make sure we don't go beyond the specified ranges
 	int rowCounter = 0;
 	int colCounter = 0;
-	while (std::getline(infile, line))
+	for (rowCounter = 0; rowCounter < rowSize; ++rowCounter)
 	{
-		if(rowCounter >= rowSize)
-			assert(!"Trying to save a bigger map than allocated memory for!!!");
-
-		colCounter = 0;
+		std::getline(infile, line);
 		splittedLine = split(line, ' ');
-		for (string str : splittedLine)
+
+		for (colCounter = 0; colCounter < colSize; colCounter++)
 		{
-			if(colCounter >= colSize)
-			{
-				assert(!"Trying to save a bigger map than allocated memory for!!!");
-			}
+			string str = splittedLine[colCounter];
 
 			int bit = stoi(str);
 
@@ -69,10 +64,7 @@ void Map::readMap(string filename)
 
 			/* Visited is init to map obstacles are considred to be visited by default */
 			visited[(rowCounter * rowSize) + colCounter] = map[(rowCounter * rowSize) + colCounter];
-
-			++colCounter;
 		}
-		++rowCounter;
 	}
 	infile.close();
 }

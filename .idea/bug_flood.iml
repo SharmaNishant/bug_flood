@@ -5,9 +5,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/helper_functions.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/bug_flood.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/bug.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/envirnment.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/env_display.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/map.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/bug_flood_extra.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/environment.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/package.xml" isTestSource="false" />
     </content>
