@@ -383,3 +383,8 @@ void Environment::generateObstacleLineMap()
 	this->lines[8] 	= GenLine(6  ,6  ,4  ,6); //There*/
 
 }
+
+ObstacleLines Environment::getObstacleLines()
+{
+	return this->lines;
+}

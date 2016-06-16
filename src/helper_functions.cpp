@@ -100,6 +100,26 @@ double getDirectionAngleDegrees(Point goal, Point source)
 	return (rad * 57.2957795131); //pre calculated 180/pi
 }
 
+bool IsIntersecting(Line line, ObstacleLines lines)
+{
+	bool result = false;
+	Point point;
+	double distance;
+	for (auto &kv : lines)
+	{
+		bool tempResult = IsIntersecting(line, kv.second, point, distance);
+		if(point.x == kv.second.start.x && point.y == kv.second.start.y)
+			tempResult = false;
+		if(point.x == kv.second.end.x && point.y == kv.second.end.y)
+			tempResult = false;
+		if(tempResult)
+			result = true;
+	}
+	return result;
+}
+
+
+
 void prunePath(vector<Point> &inPath, Environment & environment, double &cost)
 {
 	vector< Point > prunedPath;
@@ -114,15 +134,26 @@ void prunePath(vector<Point> &inPath, Environment & environment, double &cost)
 	int lastIntersection = 1;
 
 	Point intersection;
+	//temp point to avoid same point avoidation
+	Point avoidIntersection;
+	avoidIntersection.x = -1;
+	avoidIntersection.y = -1;
+	avoidIntersection.z = -1;
+	ObstacleLines lines = environment.getObstacleLines();
 	double tempCost;
 	int tempID;
 	while (i < inPath.size()-1)
 	{
 		lastIntersection = i+1;
-		for(j=i+2;j<inPath.size();j++)
+		for(j=i+1;j<inPath.size();j++)
 		{
-			//VERIFY NEXT LINE"S LAST PARAMETER IF NOT PERFORMINING
-			intersectionResult = environment.getObstacleIntersection(prunedPath[prunedPath.size() - 1], inPath[j], intersection, tempCost, tempID, inPath[j]);
+			// DEPRECATED
+//			//VERIFY NEXT LINE"S LAST PARAMETER IF NOT PERFORMINING
+//			intersectionResult = environment.getObstacleIntersection(prunedPath[prunedPath.size() - 1], inPath[j], intersection, tempCost, tempID, inPath[i+2]);
+			Line line;
+			line.start = prunedPath[prunedPath.size() - 1];
+			line.end = inPath[j];
+			intersectionResult = IsIntersecting(line, lines);
 			if(!intersectionResult) //intersection not detected
 			{
 				lastIntersection = j;

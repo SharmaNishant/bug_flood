@@ -62,16 +62,28 @@ int main(int argCount, char ** argValues)
 		}
 
 		//for all bugs in the bugList
-		for (Bug &bug: bugList)
+//		for (Bug &bug: bugList)
+//		{
+//			if (bug.getState() == Bug::TOWARDS_GOAL)
+//			{
+//				bug.TowardsGoal(environment, bugList);
+//				continue; //to avoid running a bug twice when changing transition through TOWARDS_GOAL to BOUNDARY_FOLLOW
+//			}
+//			if(bug.getState() == Bug::BOUNDARY_FOLLOWING)
+//			{
+//				bug.BoundaryFollow(environment);
+//			}
+//		}
+		for (int i = 0; i < bugList.size(); ++i)
 		{
-			if (bug.getState() == Bug::TOWARDS_GOAL)
+			if (bugList[i].getState() == Bug::TOWARDS_GOAL)
 			{
-				bug.TowardsGoal(environment, bugList);
+				bugList[i].TowardsGoal(environment, bugList);
 				continue; //to avoid running a bug twice when changing transition through TOWARDS_GOAL to BOUNDARY_FOLLOW
 			}
-			if(bug.getState() == Bug::BOUNDARY_FOLLOWING)
+			if(bugList[i].getState() == Bug::BOUNDARY_FOLLOWING)
 			{
-				bug.BoundaryFollow(environment);
+				bugList[i].BoundaryFollow(environment);
 			}
 		}
 #ifdef PUBLISH_PATH

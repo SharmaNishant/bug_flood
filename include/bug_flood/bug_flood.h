@@ -14,7 +14,7 @@ typedef visualization_msgs::Marker Marker;
 
 using namespace std;
 
-//#define PUBLISH_PATH
+#define PUBLISH_PATH
 
 #ifdef PUBLISH_PATH
 void initMarkers(Marker &bugs, Marker &pathTree);

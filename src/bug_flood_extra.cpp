@@ -24,9 +24,9 @@ void initMarkers(Marker &bugs, Marker &pathTree)
 
 	//setting scale
 	pathTree.scale.x     = 1;
-	bugs.scale.x   = 0.5;
-	bugs.scale.y   = 0.5;
-	bugs.scale.z   = 0.5;
+	bugs.scale.x   = 1;
+	bugs.scale.y   = 1;
+	bugs.scale.z   = 1;
 
 	//assigning colors
 	bugs.color.r   = 1.0f;
@@ -57,9 +57,9 @@ void publish_bugs(vector<Bug> &bugList, ros::Publisher &publisher, Marker &bugs,
 
 	//publish
 	publisher.publish(bugs);
-	ros::Duration(0.2).sleep();
+	ros::Duration(0.05).sleep();
 	publisher.publish(pathTree);
-	ros::Duration(0.2).sleep();
+	ros::Duration(0.05).sleep();
 }
 
 void publish_bug(Bug &bug, ros::Publisher &publisher, Marker &pathTree)
@@ -75,7 +75,7 @@ void publish_bug(Bug &bug, ros::Publisher &publisher, Marker &pathTree)
 
 	//publish
 	publisher.publish(pathTree);
-	ros::Duration(0.2).sleep();
+	ros::Duration(0.02).sleep();
 }
 
 #endif
