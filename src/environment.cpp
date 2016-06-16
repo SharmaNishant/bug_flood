@@ -245,19 +245,141 @@ Line GenLine(double oneY, double oneX, double twoY, double twoX)
 
 void Environment::generateObstacleLineMap()
 {
-	this->lines[1] 	= GenLine(6  ,2  ,10 ,2);
-	this->lines[2] 	= GenLine(6  ,2  ,6  ,4);
+
+	//create a temp copy of map
+	vector<vector<bool> > binaryMap(this->map.getRowSize()+2,vector<bool>(this->map.getColSize()+2));
+	
+	for(int i=1;i<binaryMap.size()-1;i++)
+	{
+		for(int j=1;j<binaryMap[0].size()-1;j++)
+		{
+			binaryMap[i][j]=this->map.at(i-1,j-1);
+		}
+	}
+	//padding
+	for(int i=0;i<binaryMap.size();i++)
+	{
+		binaryMap[i][0]=false;
+		binaryMap[i][binaryMap[0].size()-1]=false;
+	}
+
+	for(int j=0;j<binaryMap[0].size();j++)
+	{
+		binaryMap[0][j]=false;
+		binaryMap[binaryMap.size()-1][j]=false;
+	}
+
+	Point p1,p2;
+    p1.x=-1;
+    p1.y=-1;
+    p2.x=-1;
+    p2.y=-1;
+    vector<Line> edges;
+    //horizontal edges
+    for(int i=1;i<binaryMap.size()-1;i++)
+    {
+        for(int j=1;j<binaryMap[0].size()-1;j++)
+        {
+
+            if(binaryMap[i][j] == 1)
+            {
+                int dir = 0;
+                if(binaryMap[i-1][j]==0)
+                    dir = -1;
+                if(binaryMap[i+1][j]==0)
+                    dir = 1;
+
+                if(dir != 0){
+                    p1.x=i;
+                    p1.y=j;
+                    while( binaryMap[i][j] == 1  &&  binaryMap[i+dir][j] == 0)
+                        j++;
+
+                    //j--;
+
+                    p2.x=i;
+                    p2.y=j;           //remember to change this
+					if(dir==1)
+					{
+						p2.x++;
+						p1.x++;
+					}
+                    cout<<p1.y-1<<","<<p1.x-1<<" "<<p2.y-1<<","<<p2.x-1<<endl;
+                    Line l_i;
+                    l_i.start=p1;
+                    l_i.end=p2;
+                    edges.push_back(l_i);
+                }
+            }
+        }
+    }
+
+
+    //verticle edges
+    p1.x=-1;
+    p1.y=-1;
+    p2.x=-1;
+    p2.y=-1;
+    cout<<binaryMap[0].size()<<endl;
+
+    for(int j=1;j<binaryMap[0].size()-1;j++)
+    {
+        for(int i=1;i<binaryMap.size()-1;i++) {
+
+            if (binaryMap[i][j] == 1) {
+                int dir = 0;
+                if (binaryMap[i][j - 1] == 0)
+                    dir = -1;
+                if (binaryMap[i][j + 1] == 0)
+                    dir = 1;
+
+                if (dir != 0) {
+                    p1.x = i;
+                    p1.y = j;
+                    while (binaryMap[i][j] == 1 && binaryMap[i][j + dir] == 0)
+                        i++;
+
+                    //i--;
+
+                    p2.x = i;
+                    p2.y = j;           //remember to change this
+					if(dir==1)
+					{
+						p2.y++;
+						p1.y++;
+					}
+                    cout << p1.y -1<< "," << p1.x-1 << " " << p2.y-1 << "," << p2.x-1 << endl;
+
+                    Line l_i;
+                    l_i.start = p1;
+                    l_i.end = p2;
+                    edges.push_back(l_i);
+                }
+            }
+
+
+        }
+    }
+
+
+    for(int i=0;i<edges.size();i++)
+    {
+    	this->lines[i+1]=GenLine(edges[i].start.y-1,edges[i].start.x-1,edges[i].end.y-1,edges[i].end.x-1);
+    }
+
+
+/*	this->lines[1] 	= GenLine(6  ,2  ,10 ,2); //there
+	this->lines[2] 	= GenLine(6  ,2  ,6  ,4); //there
 	this->lines[3] 	= GenLine(6  ,4  ,10 ,4);
 	this->lines[4] 	= GenLine(10 ,4  ,10 ,2);
 
-	this->lines[5] 	= GenLine(4  ,6  ,4  ,13);
+	this->lines[5] 	= GenLine(4  ,6  ,4  ,13); //there
 	this->lines[6] 	= GenLine(4  ,13 ,13 ,13);
 	this->lines[7] 	= GenLine(13 ,13 ,13 ,6);
-	this->lines[9] 	= GenLine(13 ,6  ,11 ,6);
-	this->lines[10] = GenLine(11 ,6  ,11 ,11);
-	this->lines[11] = GenLine(11 ,11 ,6  ,11);
+	this->lines[9] 	= GenLine(13 ,6  ,11 ,6); //there
+	this->lines[10] = GenLine(11 ,6  ,11 ,11); // there
+	this->lines[11] = GenLine(11 ,11 ,6  ,11); //there
 	this->lines[12] = GenLine(6  ,11 ,6  ,6);
-	this->lines[8] 	= GenLine(6  ,6  ,4  ,6);
-
+	this->lines[8] 	= GenLine(6  ,6  ,4  ,6); //There*/
 
 }
