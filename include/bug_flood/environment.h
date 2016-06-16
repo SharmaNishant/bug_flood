@@ -48,6 +48,8 @@ public:
 	bool getObstacleIntersection(Point start, Point end, Point &intersection, double &distance, int &boundaryID,Point &location);
 	bool getObstacleIntersection(Line line, Point &intersection, double &distance, int &boundaryID, Point &location);
 
+	ObstacleLines getObstacleLines();
+
 	bool getNextBoundaryLine(Point location, int &boundaryID, Point &tempGoal);
 
 	Line getLine(int id);

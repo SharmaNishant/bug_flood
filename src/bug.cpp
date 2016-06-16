@@ -74,7 +74,10 @@ void Bug::BoundaryFollow(Environment &environment)
 		bool canLeave = this->canLeaveBoundary(environment);
 		if(!canLeave) //change direction to other side of the obstacle
 		{
-			this->path.push_back(this->location);
+			Point tempLocation;
+			tempLocation.x = this->location.x;
+			tempLocation.y = this->location.y;
+			tempLocation.z = this->location.z;
 			environment.getNextBoundaryLine(this->location, this->onBoundary, this->boundaryGoal);
 		}
 		double isVisited = environment.isVisited(this->location);
@@ -125,7 +128,11 @@ bool Bug::canLeaveBoundary(Environment &environment)
 			else
 			{
 				environment.setVisited(this->location, this->cost);
-				this->path.push_back(this->location); //because it's a leave point
+				Point tempLocation;
+				tempLocation.x = this->location.x;
+				tempLocation.y = this->location.y;
+				tempLocation.z = this->location.z;
+				this->path.push_back(tempLocation); //because it's a leave point
 				//cout << this-> identifier << " " << this->location.x << " " << this->location.y << endl;
 				//also move a step
 //				this->cost += getEuclideanDistance(this->location, newLocation);
