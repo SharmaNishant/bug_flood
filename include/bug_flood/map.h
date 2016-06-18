@@ -6,13 +6,23 @@
 #define BUG_FLOOD_MAP_H
 
 #include <vector>
-#include <geometry_msgs/Point.h>
+//#include <geometry_msgs/Point.h>
+#include <string>
+#include <cmath>
+#include <climits>
+#include <bug_flood/type_decls.h>
 
 using namespace std;
 
-typedef geometry_msgs::Point Point;
-
-
+//typedef geometry_msgs::Point Point;
+/*
+typedef struct Point
+{
+	double x;
+	double y;
+	double z;
+} Point;
+*/
 /***
  * NEVER GIVE THE POINTER OF THE map / visited MEMBER VARIABLE TO ANYONE ELSE. OTHERWISE BRACE SEGFAULTS.
  * SOL: IMPLEMENT A COPY CONSTRUCTOR FOR PASSING THE OBJECT
