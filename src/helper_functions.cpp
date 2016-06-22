@@ -100,25 +100,38 @@ double getDirectionAngleDegrees(Point goal, Point source)
 	return (rad * 57.2957795131); //pre calculated 180/pi
 }
 
-bool IsIntersecting(Line line, ObstacleLines lines)
+bool IsIntersecting(Line line, ObstacleLines lines, Environment &environment)
 {
 	bool result = false;
 	Point point;
 	double distance;
-	for (auto &kv : lines)
-	{
+	for (auto &kv : lines) {
 		bool tempResult = IsIntersecting(line, kv.second, point, distance);
-		if(point.x == kv.second.start.x && point.y == kv.second.start.y)
-			tempResult = false;
-		if(point.x == kv.second.end.x && point.y == kv.second.end.y)
-			tempResult = false;
+		if (point.x == kv.second.start.x && point.y == kv.second.start.y)
+		{
+			//check for diagonals through the object
+			Point mid;
+			mid.x = (line.start.x + line.end.x ) / 2 ;
+			mid.y = (line.start.y + line.end.y ) / 2 ;
+			mid.z = (line.start.z + line.end.z ) / 2 ;
+			if(!environment.isObstructed(mid))
+				tempResult = false;
+		}
+		if (point.x == kv.second.end.x && point.y == kv.second.end.y)
+		{
+			//check for diagonals through the objectcd
+			Point mid;
+			mid.x = (line.start.x + line.end.x ) / 2 ;
+			mid.y = (line.start.y + line.end.y ) / 2 ;
+			mid.z = (line.start.z + line.end.z ) / 2 ;
+			if(!environment.isObstructed(mid))
+				tempResult = false;
+		}
 		if(tempResult)
 			result = true;
 	}
 	return result;
 }
-
-
 
 void prunePath(vector<Point> &inPath, Environment & environment, double &cost)
 {
@@ -153,7 +166,7 @@ void prunePath(vector<Point> &inPath, Environment & environment, double &cost)
 			Line line;
 			line.start = prunedPath[prunedPath.size() - 1];
 			line.end = inPath[j];
-			intersectionResult = IsIntersecting(line, lines);
+			intersectionResult = IsIntersecting(line, lines, environment);
 			if(!intersectionResult) //intersection not detected
 			{
 				lastIntersection = j;

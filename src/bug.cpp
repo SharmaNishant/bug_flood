@@ -34,20 +34,10 @@ void Bug::BoundaryFollow(Environment &environment)
 		Point newLocation = this->simulateStep();
 		this->cost += getEuclideanDistance(this->location, newLocation);
 		this->location = newLocation;
-
 		/*
 		 * We decided to only check on corners
 		 */
-//		environment.setVisited(this->location, this->cost);
-
 		//check if already visited (off for now)
-		/*
-		double isVisited = environment.isVisited(newLocation)
-		if(isVisited != -1  && this->cost >= isVisited)
-		{
-			this->RE_VISITING;
-		}
-		*/
 
 		//can we leave from this point, if yes the function will do it
 		this->canLeaveBoundary(environment);
@@ -61,15 +51,8 @@ void Bug::BoundaryFollow(Environment &environment)
 		//bug is at it's temp goal
 		this->cost += getEuclideanDistance(this->location, this->boundaryGoal);
 		this->location = this->boundaryGoal;
-		//this->path.push_back(this->location);
-//		//now we make it a leave point
-//		double isVisited = environment.isVisited(this->location);
-//		if(isVisited != -1  && this->cost >= isVisited)
-//		{
-//			this->state = RE_VISITING;
-//			return;
-//		}
-//		environment.setVisited(this->location,this->cost);
+		this->path.push_back(this->location);
+
 		//is visited and can leave boundary
 		bool canLeave = this->canLeaveBoundary(environment);
 		if(!canLeave) //change direction to other side of the obstacle
@@ -101,14 +84,7 @@ bool Bug::canLeaveBoundary(Environment &environment)
 	newLocation.y = this->location.y + (0.1 * sin(this->heading));
 	//check if we can move towards goal now
 	//is route to goal clear
-//	Line line;
-//	line.start = newLocation;
-//	line.end = environment.getGoal();
-//
-//	Point intersection;
-//	double distIntersection;
-//	int intersectingBoundaryID = this->onBoundary;
-//	bool isRouteBlocked = environment.getObstacleIntersection(line, intersection, distIntersection, intersectingBoundaryID);
+
 	//we can move towards goal
 	//the way is clear till goal or we can atleast move one step in goal's direction
 	//if(!isRouteBlocked || !environment.isObstructed(newLocation))
@@ -133,10 +109,6 @@ bool Bug::canLeaveBoundary(Environment &environment)
 				tempLocation.y = this->location.y;
 				tempLocation.z = this->location.z;
 				this->path.push_back(tempLocation); //because it's a leave point
-				//cout << this-> identifier << " " << this->location.x << " " << this->location.y << endl;
-				//also move a step
-//				this->cost += getEuclideanDistance(this->location, newLocation);
-//				this->location = newLocation;
 				this->state = TOWARDS_GOAL;
 				return true;
 			}
