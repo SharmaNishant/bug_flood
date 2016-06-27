@@ -32,4 +32,5 @@
 *.save
 
 #clion workspace files
-.idea/*
+.idea/
+
