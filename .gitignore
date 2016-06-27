@@ -30,3 +30,6 @@
 # Temp Files
 *~
 *.save
+
+#clion workspace files
+.idea/*
