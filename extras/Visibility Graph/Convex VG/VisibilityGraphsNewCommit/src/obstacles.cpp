@@ -5,7 +5,7 @@
  *      Author: nut
  */
 
-#include "obstacles.h"
+#include "../include/obstacles.h"
 
 tPoint start;
 

@@ -2,7 +2,7 @@
 // Created by shivamthukral on 8/6/16.
 //
 
-#include "dj.h.h"
+#include "../include/dj.h.h"
 #include "limits.h"
 
 dijkstra::dijkstra(int numNodes)

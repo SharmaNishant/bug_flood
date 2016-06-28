@@ -28,6 +28,8 @@ Bug::~Bug() {}
 void Bug::BoundaryFollow(Environment &environment)
 {
 	double distanceTempGoal = getEuclideanDistance(this->location, this->boundaryGoal);
+
+	#ifndef CONVEX
 	if(distanceTempGoal > STEP_SIZE)
 	{
 		this->heading = getDirectionAngleRadian(this->boundaryGoal, this->location);
@@ -47,6 +49,7 @@ void Bug::BoundaryFollow(Environment &environment)
 	 * leave for goal, and change the boundary (in that order)
 	 */
 	else
+#endif
 	{
 		//bug is at it's temp goal
 		this->cost += getEuclideanDistance(this->location, this->boundaryGoal);

@@ -5,19 +5,19 @@
  *      Author: nut
  */
 #include <iostream>
-#include "obstacles.h"
-#include "boostHelper.h"
-#include "obstacleController.h"
-#include "drawing.h"
-#include "utility.h"
+#include "../include/obstacles.h"
+#include "../include/boostHelper.h"
+#include "../include/obstacleController.h"
+#include "../include/drawing.h"
+#include "../include/utility.h"
 #include <vector>
-#include "VisibilityGraphController.h"
-#include "VisibilityGraph.h"
-#include "graphutility.h"
-#include "dijkstra.h"
+#include "../include/VisibilityGraphController.h"
+#include "../include/VisibilityGraph.h"
+#include "../include/graphutility.h"
+#include "../include/dijkstra.h"
 #include <time.h>
 #include <fstream>
-#include "obstacleGeneration.h"
+#include "../include/obstacleGeneration.h"
 
 clock_t startTime;
 void findShortestPath(VisibilityGraph* vg, double sourceX, double sourceY,

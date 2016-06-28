@@ -5,7 +5,7 @@
  *      Author: nut
  */
 
-#include "VisibilityGraphController.h"
+#include "../include/VisibilityGraphController.h"
 #include <map>
 
 

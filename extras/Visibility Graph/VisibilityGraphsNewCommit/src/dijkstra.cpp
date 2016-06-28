@@ -9,7 +9,7 @@
 #include<cstdio>
 #include<vector>
 #include<set>
-#include "dijkstra.h"
+#include "../include/dijkstra.h"
 #include <math.h>
 #include <climits>
 // Program to find Dijkstra's shortest path using STL set

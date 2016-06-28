@@ -1,4 +1,4 @@
-#include "line.h"
+#include "../include/line.h"
 
 Point * center;
 Line * center_line;
@@ -67,8 +67,8 @@ Line::Line(Point* p1,Point* p2){
 
 Line::~Line()
 {
-	//delete a;
-	//delete b;
+	delete a;
+	delete b;
 }
 void Line::print()
 {

@@ -5,7 +5,7 @@
  *      Author: nut
  */
 
-#include "graphutility.h"
+#include "../include/graphutility.h"
 
 double vectorsAngle( double x, double y, double basex, double basey)
 {
@@ -119,7 +119,7 @@ void fileWrite(Point* a,Point* b){
 
 	double dist = distance(a,b);
 	FILE *fp;
-	fp=fopen("/tmp/vg_test.txt", "a");
+	fp=fopen("/home/shivamthukral/Desktop/test.txt", "a");
 	fprintf(fp, " %d" , a->id);
 	fprintf(fp, " %d" , b->id);
 	fprintf(fp, " %f" , dist);

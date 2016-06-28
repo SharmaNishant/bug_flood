@@ -5,7 +5,7 @@
  *      Author: nut
  */
 
-#include "pointHandler.h"
+#include "../include/pointHandler.h"
 
 
 Point* searchPointByCoord(vector<Point*> pointList, double px, double py) {

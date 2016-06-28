@@ -5,7 +5,7 @@
  *      Author: nut
  */
 
-#include "VisibilityGraph.h"
+#include "../include/VisibilityGraph.h"
 int MAX=1000;
 bool lineHasPoint(tPoint p,tLinestring l);
 VisibilityGraph::VisibilityGraph() {
