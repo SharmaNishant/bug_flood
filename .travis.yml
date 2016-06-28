@@ -15,8 +15,7 @@ install:
   - mkdir -p ~/catkin_ws/src
   - cd ~/catkin_ws/src/
   - catkin_init_workspace
-  - cd
-  - cp -r adarkhorse/bug_flood catkin_ws/src/bug_flood
+  - git clone --depth=50 --branch=master git@github.com:adarkhorse/bug_flood.git
 script:
   - cd ~/catkin_ws/ 
   - catkin_make 
