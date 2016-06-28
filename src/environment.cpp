@@ -246,6 +246,24 @@ Line GenLine(double oneY, double oneX, double twoY, double twoX)
 void Environment::generateObstacleLineMap()
 {
 
+#ifdef CONVEX
+	ifstream fin("/tmp/bug_flood_lines.txt");
+	if(!fin.is_open())
+	{
+		cout<<"CANNOT OPEN LINES FILE"<<endl;
+		exit(-1);
+	}
+	string line;
+
+	int i=0;
+	while(getline(fin,line))
+	{
+		vector<string> splitted = split(line,' ');
+		this->lines[i+1] = GenLine(stoi(splitted[0]),stoi(splitted[1]),stoi(splitted[2]),stoi(splitted[3]));
+		i++;
+		//cout<<i<<endl;
+	}
+#else
 	//create a temp copy of map
 	vector<vector<bool> > binaryMap(this->map.getRowSize()+2,vector<bool>(this->map.getColSize()+2));
 	
@@ -381,6 +399,8 @@ void Environment::generateObstacleLineMap()
 	this->lines[11] = GenLine(11 ,11 ,6  ,11); //there
 	this->lines[12] = GenLine(6  ,11 ,6  ,6);
 	this->lines[8] 	= GenLine(6  ,6  ,4  ,6); //There*/
+
+#endif
 
 }
 

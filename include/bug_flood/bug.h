@@ -19,7 +19,7 @@ using namespace std;
 
 #define STEP_SIZE 1
 #define HEADING_ERROR 0.0001
-#define CONVEX
+
 
 class Bug
 {
