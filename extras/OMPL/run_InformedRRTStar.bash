@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-planner="RRTstar";
+planner="InformedRRTstar";
 
 base="/home/nishant/catkin_ws/src/bug_flood/obstacles/"
 outputFolderName="/result"
