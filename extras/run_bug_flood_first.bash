@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-planner="bug_flood";
+planner="bug_flood_first";
 
 base="/home/nishant/catkin_ws/src/bug_flood/obstacles/"
 outputFolderName="/result"
@@ -24,7 +24,7 @@ do
      result_file=$folder$outputFolderName$result_file
      echo $result_file
 
-	 rosrun bug_flood bug_flood $sg_file $bm_file $result_file last
+	 rosrun bug_flood bug_flood $sg_file $bm_file $result_file first
     done
 done
 

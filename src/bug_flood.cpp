@@ -15,13 +15,25 @@ int main(int argCount, char ** argValues)
 		exit(0);
 	}
 	//path pruning is on by default
-	bool isPruneON = true;
+	int isPruneON = 1;
 	if(argCount >= 5)
 	{
-		if(!strcmp("false", argValues[4]))
+		if(!strcmp("last", argValues[4]))
 		{
-			isPruneON = false;
+			isPruneON = 2;
 		}
+
+		if(!strcmp("first", argValues[4]))
+		{
+			isPruneON = 1;
+		}
+
+		if(!strcmp("none", argValues[4]))
+		{
+			isPruneON = 0;
+		}
+
+
 	}
 
 	//initializing ROS
@@ -108,12 +120,19 @@ int main(int argCount, char ** argValues)
 	double before_pruning_cost = finalBug.getCost();
 
 	//do path pruning only if pruning is on
-	if(isPruneON)
+	if(isPruneON > 0)
 	{
 		startTime = ros::Time::now();
 		vector<Point> resultingPath = finalBug.getpath();
 		double cost;
-		prunePath(resultingPath, environment, cost);
+
+		if(isPruneON == 1)
+			prunePathFirst(resultingPath, environment, cost);
+		else
+			prunePathLast(resultingPath, environment, cost);
+
+
+
 		finalBug.setCost(cost);
 		finalBug.setPath(resultingPath);
 		endTime = ros::Time::now();

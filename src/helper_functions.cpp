@@ -107,6 +107,11 @@ bool IsIntersecting(Line line, ObstacleLines lines, Environment &environment)
 	double distance;
 	for (auto &kv : lines) {
 		bool tempResult = IsIntersecting(line, kv.second, point, distance);
+		//special clause: if intersection is the end of the line in question no need to do anything
+		if(point.x == line.end.x && point.y == line.end.y)
+		{
+			tempResult = false;
+		}
 		if (point.x == kv.second.start.x && point.y == kv.second.start.y)
 		{
 			//check for diagonals through the object
@@ -127,13 +132,15 @@ bool IsIntersecting(Line line, ObstacleLines lines, Environment &environment)
 			if(!environment.isObstructed(mid))
 				tempResult = false;
 		}
-		if(tempResult)
+		if(tempResult) {
 			result = true;
+			break; //if intersection no need to go further
+		}
 	}
 	return result;
 }
 
-void prunePath(vector<Point> &inPath, Environment & environment, double &cost)
+void prunePathLast(vector<Point> &inPath, Environment &environment, double &cost)
 {
 	vector< Point > prunedPath;
 	double prunedCost = 0;
@@ -182,6 +189,66 @@ void prunePath(vector<Point> &inPath, Environment & environment, double &cost)
 		prunedPath.push_back(inPath[inPath.size() - 1]);
 		prunedCost += sqrt(pow(prunedPath[prunedPath.size() - 1].x - prunedPath[prunedPath.size() - 2].x, 2) +
 								  pow(prunedPath[prunedPath.size() - 1].y - prunedPath[prunedPath.size() - 2].y, 2));
+	}
+
+	inPath = prunedPath;
+	cost = prunedCost;
+}
+
+
+void prunePathFirst(vector<Point> &inPath, Environment &environment, double &cost)
+{
+	vector< Point > prunedPath;
+	double prunedCost = 0;
+
+	//entering first element before pruning starts
+	prunedPath.push_back(inPath[0]);
+
+	bool intersectionResult = false;
+	int i=0;
+	int j;
+	int lastIntersection = 1;
+
+	Point intersection;
+	//temp point to avoid same point avoidation
+	Point avoidIntersection;
+	avoidIntersection.x = -1;
+	avoidIntersection.y = -1;
+	avoidIntersection.z = -1;
+	ObstacleLines lines = environment.getObstacleLines();
+	double tempCost;
+	int tempID;
+	while (i < inPath.size()-1)
+	{
+		lastIntersection = i+1;
+		for(j=i+1;j<inPath.size();j++)
+		{
+			// DEPRECATED
+//			//VERIFY NEXT LINE"S LAST PARAMETER IF NOT PERFORMINING
+//			intersectionResult = environment.getObstacleIntersection(prunedPath[prunedPath.size() - 1], inPath[j], intersection, tempCost, tempID, inPath[i+2]);
+			Line line;
+			line.start = prunedPath[prunedPath.size() - 1];
+			line.end = inPath[j];
+			intersectionResult = IsIntersecting(line, lines, environment);
+			if(!intersectionResult) //intersection not detected
+			{
+				lastIntersection = j;
+			}
+			else // this will stop pruning after first intersection
+			{
+				break;
+			}
+		}
+		i = lastIntersection;
+		prunedPath.push_back(inPath[i]);
+		prunedCost += sqrt(pow(prunedPath[prunedPath.size() - 1].x - prunedPath[prunedPath.size() - 2].x,2)+pow(prunedPath[prunedPath.size() - 1].y - prunedPath[prunedPath.size() - 2].y,2));
+	}
+	//safety check
+	if(i == (inPath.size()-2))
+	{
+		prunedPath.push_back(inPath[inPath.size() - 1]);
+		prunedCost += sqrt(pow(prunedPath[prunedPath.size() - 1].x - prunedPath[prunedPath.size() - 2].x, 2) +
+						   pow(prunedPath[prunedPath.size() - 1].y - prunedPath[prunedPath.size() - 2].y, 2));
 	}
 
 	inPath = prunedPath;

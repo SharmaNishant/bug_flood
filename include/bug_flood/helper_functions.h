@@ -21,7 +21,8 @@ void getPerpendicularLineIntersection(Line line, Point point, Point &intersectio
 double getEuclideanDistance(Point first, Point second);
 double getDirectionAngleRadian(Point goal, Point source);
 double getDirectionAngleDegrees(Point goal, Point source);
-void prunePath(vector<Point> &inPath, Environment & environment, double &cost);
+void prunePathLast(vector<Point> &inPath, Environment &environment, double &cost);
+void prunePathFirst(vector<Point> &inPath, Environment &environment, double &cost);
 
 
 #endif //BUG_FLOOD_HELPER_FUNCTIONS_H

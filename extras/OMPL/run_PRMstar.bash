@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
-planner="bug_flood";
+planner="PRMstar";
 
 base="/home/nishant/catkin_ws/src/bug_flood/obstacles/"
 outputFolderName="/result"
 
-source /home/nishant/catkin_ws/devel_isolated/setup.bash
+cd /home/nishant/catkin_ws/build_isolated/ompl/devel/bin
 
 files=($(find $base -type d -name "*obstacles"))
 for folder in ${files[*]}
@@ -20,11 +20,12 @@ do
      bm_file="/map_$i.txt"
      bm_file=$folder$bm_file
      echo $bm_file
+     output_file="/tmp/output.txt"
+     echo $output_file
      result_file="/result_"$planner".txt"
      result_file=$folder$outputFolderName$result_file
      echo $result_file
-
-	 rosrun bug_flood bug_flood $sg_file $bm_file $result_file last
+     ./demo_OptimalPlanning -s $sg_file -b $bm_file -f $output_file -p $planner -r $result_file -o ThresholdPathLength
     done
 done
 
