@@ -18,16 +18,6 @@ class Point: public Geometry
 	bool visited;
 	
 	Point();
-	Point(const Point &other)
-	{
-		this->x=other.x;
-		this->y=other.y;
-		this->id=other.id; // for removing, comparing, etc
-		this->theta=other.theta; // anglular amount from base line
-		this->index=other.index;
-		this->p=other.p;
-		this->visited=other.visited;
-	};
 	Point(double _x1, double _y1);
 
 	virtual void print();

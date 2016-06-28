@@ -66,7 +66,6 @@ vector<Line*> VisibilityGraphController::visibleVertices(Point* ori){
 	//Took help from  multi index facility of boost for angular sorting
 	for(int m=0;m<this->obstacleList.size();m++){
 		Obstacle* o=this->obstacleList[m];
-		cout<<o->id<<endl;
 		vector<Point*> points = o->getVertices();
 		for(int i=0;i<points.size();i++){
 			// Calculate the angle from center line:

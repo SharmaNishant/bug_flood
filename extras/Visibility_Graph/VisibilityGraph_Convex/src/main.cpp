@@ -105,17 +105,13 @@ int main(int argc, char* argv[]) {
          obsList.push_back(obs);
      }
 
-    obsList.at(10)->print();
-
     //Create the initial Visibility graph
     VisibilityGraph* visGraph = new VisibilityGraph(obsList);
-    visGraph->print();
     VisibilityGraphController* vg = new VisibilityGraphController(visGraph);
-
+    //cout<<"HELLO"<<endl;
     vector<Line*> visEdges = vg->constructVisGraph();
-
-
     vector<Line*> obsSide = visGraph->obsSides;
+
 
     //removeing inside edges
 
@@ -151,28 +147,25 @@ int main(int argc, char* argv[]) {
     //visGraph->print();
     visEdges.clear();
     vector<Line *> visEdges1 = visGraph->edges;
-    obsSide = visGraph->obsSides;
     vector<Obstacle*> visObs = visGraph->obstacles;
     //Draw the Obstacle Sides id in the image
-/*    for (int i = 0; i < obsSide.size(); i++) {
+ /*   for (int i = 0; i < obsSide.size(); i++) {
         Line* l = obsSide[i];
         drawText(((l->a->x) + (l->b->x)) / 2, ((l->a->y) + (l->b->y)) / 2,
                  l->id, WHITE);
         drawEdge(l,WHITE);
-    }*/
-
+    }
+*/
     //Write the edges in a file so that Dijkstra can use it
     drawAndWriteFileVisEdges(visEdges1);
 
     //This point is not used , i created it for testign purpose
-/*
-    Point* ori = new Point(440, 120);
+  /*  Point* ori = new Point(440, 120);
     for (int i = 0; i < visObs.size(); i++) {
         //obsList[i]->print();
         drawObs(visObs[i], ori);
 
-    }
-*/
+    }*/
 
     //Find the shortest path from two points using Dijkstra
     findShortestPath(visGraph,sg_int[0],sg_int[1],sg_int[2],sg_int[3]);
@@ -182,9 +175,9 @@ int main(int argc, char* argv[]) {
     printf("%f\n",
            ((double) clock() - startTime) / CLOCKS_PER_SEC);
 
-   // displayImage();
+    //displayImage();
 
-    for(int k=0;k<obsList.size();k++)
+  /*  for(int k=0;k<obsList.size();k++)
     {
         for(int j=0;j<obsList[k]->edges.size();j++)
         {
@@ -200,7 +193,7 @@ int main(int argc, char* argv[]) {
 
     }
     delete vg;
-    delete visGraph;
+    delete visGraph;*/
 
     return 0;
 }
@@ -213,7 +206,7 @@ void drawAndWriteFileVisEdges(vector<Line*> visEdges) {
        // puts("File successfully deleted");
 
     for (int i = 0; i < visEdges.size(); i++) {
-        drawEdge(visEdges[i], BLUE);
+        //drawEdge(visEdges[i], BLUE);
         fileWrite(visEdges[i]->a, visEdges[i]->b);
     }
 }
@@ -261,17 +254,17 @@ void findShortestPath(VisibilityGraph* vg, double sourceX, double sourceY,
                      destPointId);
 
     //Print the Shortest Path
-    /*printf("The Shortest Path is :");*/
-    /*for(int j=0;j<path.size()-1;j++) {
+    /*printf("The Shortest Path is :");
+    for(int j=0;j<path.size()-1;j++) {
         printf("%d ", path[j]);
 
         if (path[j] != -1) {
             start = getPointById(vg->nodes, path[j]);
             goal = getPointById(vg->nodes, path[j + 1]);
             // Visualize:
-           *//* drawCircle(start->x, start->y, 2, GREEN);
+            drawCircle(start->x, start->y, 2, GREEN);
             drawCircle(goal->x, goal->y, 2, GREEN);
-            drawLine(start->x, start->y, goal->x, goal->y, GREEN);*//*
+            drawLine(start->x, start->y, goal->x, goal->y, GREEN);
         }
     }*/
 

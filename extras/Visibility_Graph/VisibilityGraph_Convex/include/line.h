@@ -24,18 +24,6 @@ class Line: public Geometry
 	Line();
 	Line(double _x1, double _y1, double _x2, double _y2);
 	Line(Point* p1,Point* p2);
-	Line (const Line &other)
-	{
-		this->a = new Point(other.a->x,other.a->y);
-		this->b = new Point(other.b->x,other.b->y);
-		this->id = other.id;
-		this->line= other.line;
-		this->dist = other.dist;
-		this->theta_cache=other.theta_cache;
-		this->m=other.m;
-		this->y_intercept=other.y_intercept;
-		std::cout<<"Line Copy called"<<std::endl;
-	};
 	~Line();
 	virtual void print();
     virtual double value();

@@ -15,7 +15,6 @@ VisibilityGraph::VisibilityGraph() {
 
 VisibilityGraph::VisibilityGraph(vector<Obstacle*> o){
 	obstacles=o;
-	obstacles[0]->print();
 	for(int i=0;i<MAX;i++){
 		pointVSPoints[i][0]=-1;
 		pointVSPoints[i][1]=-1;
