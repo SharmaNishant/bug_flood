@@ -12,6 +12,7 @@ before_install:
   - rosdep update
 install:
   - source /opt/ros/indigo/setup.bash
+  - export PYTHONPATH=/usr/share/pyshared:${PYTHONPATH}
   - mkdir -p ~/catkin_ws/src
   - cd ~/catkin_ws/src/
   - catkin_init_workspace
