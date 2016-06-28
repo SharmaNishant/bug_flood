@@ -304,7 +304,7 @@ void Environment::generateObstacleLineMap()
 						p2.x++;
 						p1.x++;
 					}
-                    cout<<p1.y-1<<","<<p1.x-1<<" "<<p2.y-1<<","<<p2.x-1<<endl;
+                   // cout<<p1.y-1<<","<<p1.x-1<<" "<<p2.y-1<<","<<p2.x-1<<endl;
                     Line l_i;
                     l_i.start=p1;
                     l_i.end=p2;
@@ -320,7 +320,7 @@ void Environment::generateObstacleLineMap()
     p1.y=-1;
     p2.x=-1;
     p2.y=-1;
-    cout<<binaryMap[0].size()<<endl;
+   // cout<<binaryMap[0].size()<<endl;
 
     for(int j=1;j<binaryMap[0].size()-1;j++)
     {
@@ -348,7 +348,7 @@ void Environment::generateObstacleLineMap()
 						p2.y++;
 						p1.y++;
 					}
-                    cout << p1.y -1<< "," << p1.x-1 << " " << p2.y-1 << "," << p2.x-1 << endl;
+                   // cout << p1.y -1<< "," << p1.x-1 << " " << p2.y-1 << "," << p2.x-1 << endl;
 
                     Line l_i;
                     l_i.start = p1;

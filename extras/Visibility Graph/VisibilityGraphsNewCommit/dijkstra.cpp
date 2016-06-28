@@ -190,7 +190,7 @@ vector<int> Graph::shortestPath(int src,int dest)
  /*   printf("Vertex   Distance from Source\n");
     for (int i = 0; i < V; ++i)
         printf("%d \t\t %d\n", i, dist[i]);*/
-    printf("%d   ", dist[1]);
+    printf("%d ", dist[1]);
 
     int root=dest;
     while(root!=-1)
@@ -209,7 +209,7 @@ vector<int> Graph::shortestPath(int src,int dest)
 vector<int> initiateDijkstra(int numVertice,int numEdges,bool directed,int source,int destination) {
     int a, b, src, dest;
     double c;
-    FILE *input = fopen("/home/shivamthukral/Desktop/test.txt", "r+");
+    FILE *input = fopen("/tmp/vg_test.txt", "r+");
     verticesNum = numVertice;
     edgesNum=numEdges;
    // printf("Vertice Num %d , Edge Num %d\n",verticesNum,edgesNum);
@@ -228,7 +228,7 @@ vector<int> initiateDijkstra(int numVertice,int numEdges,bool directed,int sourc
     vector<int> p=g.shortestPath(source,destination);
 
 
-    printf("\n");
+//    printf("\n");
     return p;
 }
 

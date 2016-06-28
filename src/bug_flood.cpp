@@ -105,6 +105,8 @@ int main(int argCount, char ** argValues)
 	double mainTime = sec + (nsec / 1000000000.0);
 	double pruneTime = 0;
 
+	double before_pruning_cost = finalBug.getCost();
+
 	//do path pruning only if pruning is on
 	if(isPruneON)
 	{
@@ -140,7 +142,7 @@ int main(int argCount, char ** argValues)
 			sec -= 1;
 			nsec += 1000000000;
 		}
-		ROS_INFO("RABBIT CARROT Pruning Time = %d, %d", sec, nsec);
+		//ROS_INFO("RABBIT CARROT Pruning Time = %d, %d", sec, nsec);
 		pruneTime += (sec + (nsec / 1000000000.0));
 	#endif
 
@@ -157,7 +159,7 @@ int main(int argCount, char ** argValues)
 	ofstream logFile;
 	logFile.open(argValues[3],ofstream::app);
 
-	logFile << finalBug.getCost() << "," << mainTime << "," << pruneTime << endl;
+	logFile << before_pruning_cost << " " << mainTime << " " << finalBug.getCost() << " " << pruneTime << endl;
 
 	logFile.close();
 

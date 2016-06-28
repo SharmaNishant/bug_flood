@@ -180,7 +180,7 @@ int main(int argc, char* argv[]) {
 
 void drawAndWriteFileVisEdges(vector<Line*> visEdges) {
     //Remove existing test.txt file
-    if (remove("/home/shivamthukral/Desktop/test.txt") != 0)
+    if (remove("/tmp/vg_test.txt") != 0)
         perror("Error deleting file");
     else
        // puts("File successfully deleted");
