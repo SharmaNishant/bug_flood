@@ -100,7 +100,7 @@ int main(int argCount, char ** argValues)
 		sec -= 1;
 		nsec += 1000000000;
 	}
-	ROS_INFO("End, Total Time = %d, %d", sec, nsec);
+	//ROS_INFO("End, Total Time = %d, %d", sec, nsec);
 
 	double mainTime = sec + (nsec / 1000000000.0);
 	double pruneTime = 0;
@@ -123,7 +123,7 @@ int main(int argCount, char ** argValues)
 			sec -= 1;
 			nsec += 1000000000;
 		}
-		ROS_INFO("Pruning Time = %d, %d", sec, nsec);
+	//	ROS_INFO("Pruning Time = %d, %d", sec, nsec);
 		pruneTime = sec + (nsec / 1000000000.0);
 	}
 
@@ -146,7 +146,7 @@ int main(int argCount, char ** argValues)
 		pruneTime += (sec + (nsec / 1000000000.0));
 	#endif
 
-	ROS_INFO("COST %f", finalBug.getCost());
+//	ROS_INFO("COST %f", finalBug.getCost());
 
 	//if path is to be published
 	#ifdef PUBLISH_PATH
