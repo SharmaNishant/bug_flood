@@ -25,6 +25,8 @@ do
      result_file=$folder$outputFolderName$result_file
      echo $result_file
 
+ 	 cp $folder"/lines_$i.txt" /tmp/bug_flood_lines.txt
+
 	 rosrun bug_flood bug_flood $sg_file $bm_file $result_file first
     done
 done

@@ -94,7 +94,10 @@ bool Bug::canLeaveBoundary(Environment &environment)
 	if(!environment.isObstructed(newLocation))
 	{
 		//now check if we are clear to leave from this point
-		bool crossingPaths = this->isCrossingPaths(environment.getGoal());
+		bool crossingPaths = false;
+#ifndef CONVEX
+		crossingPaths = this->isCrossingPaths(environment.getGoal());
+#endif
 		if(!crossingPaths)
 		{
 			//now we make it a leave point
@@ -141,6 +144,8 @@ bool Bug::isCrossingPaths(Point goal)
 		isIntersecting = IsIntersecting(line, pathLine, intersection, distance);
 		if(isIntersecting)
 		{
+//			if(intersection.x == line.start.x && intersection.y == line.start.y )
+//				continue;
 			return  true;
 		}
 	}

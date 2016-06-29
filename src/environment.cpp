@@ -231,7 +231,7 @@ Line Environment::getLine(int id)
 	}
 }
 
-Line GenLine(double oneY, double oneX, double twoY, double twoX)
+Line GenLine(double oneX, double oneY, double twoX, double twoY)
 {
 	Line line;
 	line.start.x = oneX;
@@ -259,8 +259,11 @@ void Environment::generateObstacleLineMap()
 	while(getline(fin,line))
 	{
 		vector<string> splitted = split(line,' ');
-		this->lines[i+1] = GenLine(stoi(splitted[0]),stoi(splitted[1]),stoi(splitted[2]),stoi(splitted[3]));
-		i++;
+		this->lines[++i] = GenLine(stoi(splitted[0]),stoi(splitted[1]),stoi(splitted[2]),stoi(splitted[3]));
+		this->lines[++i] = GenLine(stoi(splitted[2]),stoi(splitted[3]),stoi(splitted[4]),stoi(splitted[5]));
+		this->lines[++i] = GenLine(stoi(splitted[4]),stoi(splitted[5]),stoi(splitted[6]),stoi(splitted[7]));
+		this->lines[++i] = GenLine(stoi(splitted[6]),stoi(splitted[7]),stoi(splitted[8]),stoi(splitted[9]));
+
 		//cout<<i<<endl;
 	}
 #else
