@@ -57,7 +57,6 @@ void Map::readMap(string filename)
 			string str = splittedLine[colCounter];
 
 			int bit = stoi(str);
-
 			if (bit == 0)		map[(rowCounter * rowSize) + colCounter] = false;
 			else if (bit == 1)	map[(rowCounter * rowSize) + colCounter] = true;
 			else assert( (bit == 1 || bit == 0 ) && "Map values are out of range");
