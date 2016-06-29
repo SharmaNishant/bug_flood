@@ -318,7 +318,7 @@ vector<queue<myLine> > findObstacles(char * fileName,vector<vector<int> > &BM)
 
 
     /*Mat image;
-    image = imread("/home/shivamthukral/ur_ws/src/bug_flood/obstacles/10_Obstacles/image_1.jpg", CV_LOAD_IMAGE_GRAYSCALE);   // Read the file
+    image = imread("/home//ur_ws/src/bug_flood/obstacles/10_Obstacles/image_1.jpg", CV_LOAD_IMAGE_GRAYSCALE);   // Read the file
 
     if(! image.data )                              // Check for invalid input
     {

@@ -17,7 +17,7 @@ do
      sg_file="/sg_$i.txt"
      sg_file=$folder$sg_file
      echo $sg_file
-     bm_file="/map_$i.txt"
+     bm_file="/lines_$i.txt"
      bm_file=$folder$bm_file
      echo $bm_file
      result_file="/result_"$planner".txt"
@@ -27,7 +27,7 @@ do
 	 #create the temp file that vg needs
 	 touch /tmp/vg_test.txt
 
-     /home/nishant/catkin_ws/src/bug_flood/extras/Visibility\ Graph/VisibilityGraphsNewCommit/build/VisibilityGraphsNewCommit $bm_file $sg_file >> $result_file
+     /home/nishant/catkin_ws/src/bug_flood/extras/Visibility_Graph/VisibilityGraph_Convex/VisibilityGraph_Convex $bm_file $sg_file >> $result_file
     done
 done
 

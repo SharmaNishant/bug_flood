@@ -71,7 +71,7 @@ void drawEdge(Line* a,const unsigned char color[]){
 	img.draw_line(a->a->x*scale,a->a->y*scale,a->b->x*scale,a->b->y*scale,color);
 	//printf("-->>%.0f %.0f %.0f %.0f\n" , a->a->x*scale,a->a->y*scale,a->b->x*scale,a->b->y*scale);
 	/*FILE *fp;
-	fp=fopen("/home/shivamthukral/Desktop/test.txt", "a");
+	fp=fopen("/home//Desktop/test.txt", "a");
 	fprintf(fp, "%.0f %.0f %.0f %.0f" , a->a->x*scale,a->a->y*scale,a->b->x*scale,a->b->y*scale);
 	fprintf(fp, "\n");
 	fclose(fp);*/
