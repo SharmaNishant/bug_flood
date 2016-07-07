@@ -1,8 +1,6 @@
 # bug_flood
 A bug based offline path planner.
 
-[![Build Status](https://travis-ci.com/adarkhorse/bug_flood.svg?token=LNkPwFCCZfwcD7B6ErFX&branch=master)](https://travis-ci.com/adarkhorse/bug_flood)
-
 ### Input
 We take 3 inputs: A binary map, obstacle line lists (with lines in order. Note: we will have a tool to generate this input from the binary map.), and sourceGoal.
 
