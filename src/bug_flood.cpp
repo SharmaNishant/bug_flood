@@ -119,6 +119,12 @@ int main(int argCount, char ** argValues)
 
 	double before_pruning_cost = finalBug.getCost();
 
+	// Before pruning dump the un-pruned path so that it can be used in OMPL PathSimplifier
+	string sgPath(argValues[1]);
+	std::size_t found =sgPath.find_last_of("/\\");
+	string directoryPath = sgPath.substr(0,found);
+	finalBug.DumpPath(directoryPath + "/path" +  sgPath.substr(found+3));
+
 	//do path pruning only if pruning is on
 	if(isPruneON > 0)
 	{

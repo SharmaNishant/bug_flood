@@ -18,7 +18,7 @@
 #include <iostream>
 #include <bug_flood/type_decls.h>
 
-#define CONVEX
+//#define CONVEX
 
 using namespace std;
 
