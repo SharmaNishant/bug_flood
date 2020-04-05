@@ -1,4 +1,9 @@
-# bug_flood
+**NOTE:** This project was done as part of a research/prototype project. The
+code is not maintained. Please reach out to the author if you have any questions
+regarding this work.
+
+
+# Bug Flood
 A bug based offline path planner.
 
 ### Input
